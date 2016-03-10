@@ -1,0 +1,21 @@
+$primary-color: #91cfe5;
+@mixin border-radius($radius){
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+%link-button{
+	margin: 20px auto 0;
+	display: inline-block;
+	border: 1px solid $primary-color;
+	text-align: center;
+	line-height: 40px;
+	transition-duration: 0.2s;
+	padding: 0 10px;
+	&:hover{
+		text-decoration: none;
+		border: 1px solid #3c9bb5;
+	}
+}

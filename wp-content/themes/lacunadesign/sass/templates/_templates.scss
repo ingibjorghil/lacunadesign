@@ -1,0 +1,136 @@
+@import "shapes";
+$primary-color: #91cfe5;
+$font-color: #3a3a36;
+html, body {
+	margin:0;
+	padding:0;
+	height:100%;
+}
+#page{
+	min-height: 100%;
+	position: relative;
+}
+.site-content{
+	padding-bottom: 20px;
+}
+.counter{
+	text-align: center;
+}
+.counter{
+	h1{
+		color: $font-color;
+		margin-bottom: 50px;
+	}
+	.link-button{
+		color: #e0e0e0;
+		@extend %link-button;
+	}
+}
+#clockdiv{
+	text-align: center;
+	display: inline-block;
+	font-size: 26px;
+	color: $font-color;
+	margin-bottom: 5%;
+	> div{
+		border: 2px solid #91cfe5;
+		display: inline-block;
+		@include border-radius(50%);
+		min-width: 100px;
+		min-height: 100px;
+	}
+	div > span{
+		padding: 15px 15px 0;
+		display: inline-block;
+		font-family: 'Poiret One', cursive;
+		font-weight: 800;
+		}
+	.text{ 
+		font-size: 16px;
+	}
+}
+.site-logo{
+	width: 350px;
+	height: auto;
+	margin: 5% auto 5%;
+}
+.site{
+	padding: 0 15px;
+}
+body{
+	background: url(../img/background.jpg) center center;
+	background-size: cover;
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	position: relative;
+	overflow-x: hidden;
+}
+.site-footer{
+	bottom: 0;
+	width: 100%;
+	height: auto;
+	left: 0;
+	position: absolute;
+	p{
+		display: inline-block;
+		margin: 0 0 0 30px;
+		color: #fff;
+	}
+	a{
+		color: #fff;
+		&:hover{	
+			color: #fff;
+		}
+		&:visited{
+			color: #fff;
+		}
+	}
+
+}
+.modal-content{
+	border-radius: 0;
+	.modal-title{
+		display: inline-block;
+	}
+}
+@media (max-width: 768px){
+	.counter{
+		h1{
+			color: $font-color;
+			margin-bottom: 10%;
+			font-size: 18px;
+		}
+	}
+	#clockdiv{
+		text-align: center;
+		display: inline-block;
+		font-size: 14px;
+		color: $font-color;
+		> div{
+			border: 2px solid #91cfe5;
+			display: inline-block;
+			@include border-radius(50%);
+			min-width: 65px;
+			min-height: 65px;
+		}
+		div > span{
+			padding: 10px 10px 0;
+			display: inline-block;
+			font-family: 'Poiret One', cursive;
+			font-weight: 800;
+			}
+		.text{ 
+			font-size: 14px;
+		}
+	}
+	.site-logo{
+	width: 200px;
+	height: auto;
+	margin: 10% auto 10px;
+	}
+	.site-footer{
+		text-align: center;
+	}
+}
