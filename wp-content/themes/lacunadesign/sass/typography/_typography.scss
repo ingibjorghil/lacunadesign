@@ -12,3 +12,17 @@ textarea {
 @import "headings";
 
 @import "copy";
+
+@import "../templates/templates";
+a{
+	color: $font-color;
+	text-decoration: none;
+	&:hover,
+	&:visited{
+		color: $font-color;
+		text-decoration: underline;
+	}
+	&:focus{
+		outline: none;
+	}
+}

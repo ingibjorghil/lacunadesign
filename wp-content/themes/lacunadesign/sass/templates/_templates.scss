@@ -17,13 +17,16 @@ html, body {
 	text-align: center;
 }
 .counter{
+	color: $font-color;
 	h1{
 		color: $font-color;
-		margin-bottom: 50px;
+		margin-bottom: 30px;
 	}
-	.link-button{
-		color: #e0e0e0;
+	.link-button{	
 		@extend %link-button;
+		color: #fff;
+		margin-top: 30px;
+		margin-bottom: 40px;
 	}
 }
 #clockdiv{
@@ -31,7 +34,7 @@ html, body {
 	display: inline-block;
 	font-size: 26px;
 	color: $font-color;
-	margin-bottom: 5%;
+	margin-bottom: 30px;
 	> div{
 		border: 2px solid #91cfe5;
 		display: inline-block;
@@ -50,15 +53,14 @@ html, body {
 	}
 }
 .site-logo{
-	width: 350px;
-	height: auto;
-	margin: 5% auto 5%;
+	width: 120px;
+	height: 50px;
 }
-.site{
-	padding: 0 15px;
+.site-branding{
+	width: 200px;
+	height: auto;
 }
 body{
-	background: url(../img/background.jpg) center center;
 	background-size: cover;
 	height: 100%;
 	width: 100%;
@@ -73,18 +75,20 @@ body{
 	height: auto;
 	left: 0;
 	position: absolute;
+	text-align: center;
+	padding-bottom: 10px;
 	p{
 		display: inline-block;
 		margin: 0 0 0 30px;
-		color: #fff;
+		color: $primary-color;
 	}
 	a{
-		color: #fff;
+		color: $primary-color;
 		&:hover{	
-			color: #fff;
+			color: $primary-color;
 		}
 		&:visited{
-			color: #fff;
+			color: $primary-color;
 		}
 	}
 
@@ -124,11 +128,6 @@ body{
 		.text{ 
 			font-size: 14px;
 		}
-	}
-	.site-logo{
-	width: 200px;
-	height: auto;
-	margin: 10% auto 10px;
 	}
 	.site-footer{
 		text-align: center;

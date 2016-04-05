@@ -36,3 +36,4 @@ updateClock(); // run function once at first to avoid delay
 var timeinterval = setInterval(updateClock,1000);
 }
 initializeClock('clockdiv', deadline);
+

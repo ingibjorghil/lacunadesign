@@ -45,6 +45,8 @@ function lacunadesign_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Primary', 'lacunadesign' ),
+		'mobile-nav' => esc_html__('Mobile Nav', 'lacunadesign' ),
+		'top-nav' => esc_html__('Top Nav', 'lacunadesign' ),
 	) );
 
 	/*
@@ -114,22 +116,105 @@ add_action( 'widgets_init', 'lacunadesign_widgets_init' );
  * Enqueue scripts and styles.
  */
 function lacunadesign_scripts() {
-	wp_enqueue_style( 'lacunadesign-style', get_stylesheet_uri() );
+	
 	wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . '/sass/bootstrap.css', array(), '3.3.6', 'all' );
-	wp_enqueue_style( 'custom-css', get_stylesheet_directory_uri() . '/sass/custom.css', array(), '1.0.0', 'all' );
-
-	wp_enqueue_script( 'lacunadesign-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
+	wp_enqueue_style( 'lacunadesign-style', get_stylesheet_uri() );
+	
 	wp_enqueue_script( 'lacunadesign-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 	
-	wp_enqueue_script( 'custom-js', get_template_directory_uri() . '/js/custom.js', array(), '1.0.0', true );
-	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.js', array(), '3.3.6', true );
+	wp_enqueue_script( 'custom-js', get_template_directory_uri() . '/js/custom.js', array(), '1.0.0' );
+	wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.js', array(), '3.3.6' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'lacunadesign_scripts' );
+
+remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
+remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
+
+add_action('woocommerce_before_main_content', 'my_theme_wrapper_start', 10);
+add_action('woocommerce_after_main_content', 'my_theme_wrapper_end', 10);
+
+function my_theme_wrapper_start() {
+  echo '<section id="main">';
+}
+
+function my_theme_wrapper_end() {
+  echo '</section>';
+}
+
+add_action( 'after_setup_theme', 'woocommerce_support' );
+function woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+}
+
+function designers_post_type() {
+   
+   // Labels
+	$labels = array(
+		'name' => _x("Designers", "post type general name"),
+		'singular_name' => _x("Designers", "post type singular name"),
+		'menu_name' => 'Designers',
+		'add_new' => _x("Add New", "Designers item"),
+		'add_new_item' => __("Add New Profile"),
+		'edit_item' => __("Edit Profile"),
+		'new_item' => __("New Profile"),
+		'view_item' => __("View Profile"),
+		'search_items' => __("Search Profiles"),
+		'not_found' =>  __("No Profiles Found"),
+		'not_found_in_trash' => __("No Profiles Found in Trash"),
+		'parent_item_colon' => ''
+	);
+	
+	// Register post type
+	register_post_type('designers' , array(
+		'labels' => $labels,
+		'public' => true,
+		'has_archive' => false,
+		'menu_icon' => 'dashicons-universal-access',
+		'rewrite' => false,
+		'supports' => array('title', 'editor', 'thumbnail')
+	) );
+}
+add_action( 'init', 'designers_post_type', 0 );
+
+/**
+	*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+ 	*** Register `department` taxonomy
+ 	*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+ */
+function Designers_taxonomy() {
+	
+	// Labels
+	$singular = 'Department';
+	$plural = 'Departments';
+	$labels = array(
+		'name' => _x( $plural, "taxonomy general name"),
+		'singular_name' => _x( $singular, "taxonomy singular name"),
+		'search_items' =>  __("Search $singular"),
+		'all_items' => __("All $singular"),
+		'parent_item' => __("Parent $singular"),
+		'parent_item_colon' => __("Parent $singular:"),
+		'edit_item' => __("Edit $singular"),
+		'update_item' => __("Update $singular"),
+		'add_new_item' => __("Add New $singular"),
+		'new_item_name' => __("New $singular Name"),
+	);
+
+	// Register and attach to 'Employees' post type
+	register_taxonomy( strtolower($singular), 'designers', array(
+		'public' => true,
+		'show_ui' => true,
+		'show_in_nav_menus' => true,
+		'hierarchical' => true,
+		'query_var' => true,
+		'rewrite' => false,
+		'labels' => $labels
+	) );
+}
+add_action( 'init', 'designers_taxonomy', 0 );
 
 /**
  * Implement the Custom Header feature.
@@ -155,3 +240,7 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+
+//Register Custom Navigation Walker
+require_once('wp_bootstrap_navwalker.php');
