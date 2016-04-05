@@ -1,3 +1,5 @@
+<h2>Populær varer</h2>
+
 <?php
 	$args = array(
 	'post_type' => 'product',
@@ -5,7 +7,6 @@
 	'meta_key' => 'total_sales',
 	'orderby' => 'meta_value_num',
 	);
-
 	$loop = new WP_Query( $args );
 		if ( $loop->have_posts() ) {
 			while ( $loop->have_posts() ) : $loop->the_post();
