@@ -28,7 +28,7 @@ if ( empty( $woocommerce_loop['loop'] ) ) {
 
 // Store column count for displaying the grid
 if ( empty( $woocommerce_loop['columns'] ) ) {
-	$woocommerce_loop['columns'] = apply_filters( 'loop_shop_columns', 3 );
+	$woocommerce_loop['columns'] = apply_filters( 'loop_shop_columns', 4 );
 }
 
 // Ensure visibility
@@ -48,7 +48,7 @@ if ( 0 === $woocommerce_loop['loop'] % $woocommerce_loop['columns'] ) {
 	$classes[] = 'last';
 }
 ?>
-<li <?php post_class( $classes ); ?>>
+<div <?php post_class( $classes ); ?>>
 
 	<?php
 	/**
@@ -90,4 +90,4 @@ if ( 0 === $woocommerce_loop['loop'] % $woocommerce_loop['columns'] ) {
 	do_action( 'woocommerce_after_shop_loop_item' );
 	?>
 
-</li>
+</div>
