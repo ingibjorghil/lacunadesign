@@ -42,11 +42,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 	## Captions
 	## Galleries
 --------------------------------------------------------------*/
-@import url(https://fonts.googleapis.com/css?family=Anaheim);
-@import url(https://fonts.googleapis.com/css?family=Poiret+One);
 @font-face {
   font-family: 'Orator';
   src: url(fonts/oratorstd.otf); }
+@font-face {
+  font-family: 'OpenSans';
+  src: url(fonts/opensans.ttf); }
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
@@ -234,8 +235,8 @@ button,
 input,
 select,
 textarea {
-  color: #404040;
-  font-family: "Anaheim", sans-serif;
+  color: #191919;
+  font-family: "OpenSans", sans-serif;
   font-size: 14px;
   font-size: 1.4rem;
   line-height: 1.5; }
@@ -304,7 +305,7 @@ big {
   text-align: center; }
 
 .wrapper-skew {
-  background: #00bcd4;
+  background: #F2F0F0;
   position: relative;
   margin-top: 70px;
   margin-bottom: 70px; }
@@ -315,7 +316,7 @@ big {
     top: -36px;
     width: 100%;
     height: 80px;
-    background: #00bcd4;
+    background: #F2F0F0;
     -webkit-transform: skewY(-1.5deg);
     -moz-transform: skewY(-1.5deg);
     -ms-transform: skewY(-1.5deg);
@@ -330,7 +331,7 @@ big {
     bottom: -36px;
     width: 100%;
     height: 80px;
-    background: #00bcd4;
+    background: #F2F0F0;
     -webkit-transform: skewY(-1.5deg);
     -moz-transform: skewY(-1.5deg);
     -ms-transform: skewY(-1.5deg);
@@ -404,24 +405,29 @@ body {
   position: relative;
   overflow-x: hidden; }
 
-.site-footer {
-  bottom: 0;
-  width: 100%;
-  height: auto;
-  left: 0;
-  position: absolute;
-  text-align: center;
-  padding-bottom: 10px; }
-  .site-footer p {
-    display: inline-block;
-    margin: 0 0 0 30px;
-    color: #91cfe5; }
-  .site-footer a {
-    color: #91cfe5; }
-    .site-footer a:hover {
+.footer-wrap {
+  position: relative;
+  margin-top: 20px;
+  padding: 20px 0;
+  height: 100%; }
+  .footer-wrap .site-footer {
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    padding-bottom: 10px; }
+    .footer-wrap .site-footer p {
+      display: inline-block;
+      margin: 0 0 0 30px;
       color: #91cfe5; }
-    .site-footer a:visited {
+    .footer-wrap .site-footer a {
       color: #91cfe5; }
+      .footer-wrap .site-footer a:hover {
+        color: #91cfe5; }
+      .footer-wrap .site-footer a:visited {
+        color: #91cfe5; }
 
 .modal-content {
   border-radius: 0; }
@@ -458,6 +464,10 @@ body {
 
   .site-footer {
     text-align: center; } }
+.no-padding {
+  padding-left: 0;
+  padding-right: 0; }
+
 a {
   color: #3a3a36;
   text-decoration: none; }
@@ -626,11 +636,11 @@ textarea {
 ## Links
 --------------------------------------------------------------*/
 a {
-  color: royalblue; }
+  color: #191919; }
   a:visited {
-    color: purple; }
+    color: #191919; }
   a:hover, a:focus, a:active {
-    color: midnightblue; }
+    color: #191919; }
   a:focus {
     outline: thin dotted; }
   a:hover, a:active {
@@ -644,6 +654,10 @@ a {
   border-radius: 0; }
   #primary-nav .navbar .navbar-collapse {
     text-align: center; }
+  #primary-nav .navbar .navbar-nav > li > a {
+    color: #191919; }
+    #primary-nav .navbar .navbar-nav > li > a:hover {
+      background-color: #9BE3E3; }
   @media (min-width: 768px) {
     #primary-nav .navbar .navbar-nav {
       float: none;
@@ -889,7 +903,7 @@ object {
   text-align: center; }
 
 .wrapper-skew {
-  background: #00bcd4;
+  background: #F2F0F0;
   position: relative;
   margin-top: 70px;
   margin-bottom: 70px; }
@@ -900,7 +914,7 @@ object {
     top: -36px;
     width: 100%;
     height: 80px;
-    background: #00bcd4;
+    background: #F2F0F0;
     -webkit-transform: skewY(-1.5deg);
     -moz-transform: skewY(-1.5deg);
     -ms-transform: skewY(-1.5deg);
@@ -915,7 +929,7 @@ object {
     bottom: -36px;
     width: 100%;
     height: 80px;
-    background: #00bcd4;
+    background: #F2F0F0;
     -webkit-transform: skewY(-1.5deg);
     -moz-transform: skewY(-1.5deg);
     -ms-transform: skewY(-1.5deg);
@@ -989,24 +1003,29 @@ body {
   position: relative;
   overflow-x: hidden; }
 
-.site-footer {
-  bottom: 0;
-  width: 100%;
-  height: auto;
-  left: 0;
-  position: absolute;
-  text-align: center;
-  padding-bottom: 10px; }
-  .site-footer p {
-    display: inline-block;
-    margin: 0 0 0 30px;
-    color: #91cfe5; }
-  .site-footer a {
-    color: #91cfe5; }
-    .site-footer a:hover {
+.footer-wrap {
+  position: relative;
+  margin-top: 20px;
+  padding: 20px 0;
+  height: 100%; }
+  .footer-wrap .site-footer {
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    padding-bottom: 10px; }
+    .footer-wrap .site-footer p {
+      display: inline-block;
+      margin: 0 0 0 30px;
       color: #91cfe5; }
-    .site-footer a:visited {
+    .footer-wrap .site-footer a {
       color: #91cfe5; }
+      .footer-wrap .site-footer a:hover {
+        color: #91cfe5; }
+      .footer-wrap .site-footer a:visited {
+        color: #91cfe5; }
 
 .modal-content {
   border-radius: 0; }
@@ -1043,6 +1062,10 @@ body {
 
   .site-footer {
     text-align: center; } }
+.no-padding {
+  padding-left: 0;
+  padding-right: 0; }
+
 /*--------------------------------------------------------------
 # Shapes
 --------------------------------------------------------------*/
@@ -1066,7 +1089,7 @@ body {
   text-align: center; }
 
 .wrapper-skew {
-  background: #00bcd4;
+  background: #F2F0F0;
   position: relative;
   margin-top: 70px;
   margin-bottom: 70px; }
@@ -1077,7 +1100,7 @@ body {
     top: -36px;
     width: 100%;
     height: 80px;
-    background: #00bcd4;
+    background: #F2F0F0;
     -webkit-transform: skewY(-1.5deg);
     -moz-transform: skewY(-1.5deg);
     -ms-transform: skewY(-1.5deg);
@@ -1092,7 +1115,7 @@ body {
     bottom: -36px;
     width: 100%;
     height: 80px;
-    background: #00bcd4;
+    background: #F2F0F0;
     -webkit-transform: skewY(-1.5deg);
     -moz-transform: skewY(-1.5deg);
     -ms-transform: skewY(-1.5deg);
@@ -1125,5 +1148,38 @@ body {
     border: 1px solid #3c9bb5; }
 #mc_embed_signup .mc-field-group h4 {
   text-align: left; }
+
+/*--------------------------------------------------------------
+# Woocommerce - Product
+--------------------------------------------------------------*/
+.woocommerce div.product {
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px; }
+  .woocommerce div.product .item-wrap {
+    background-color: #fff;
+    box-shadow: 0 0 2px rgba(173, 173, 173, 0.7);
+    padding: 5px 5px 10px 5px; }
+  .woocommerce div.product span.price,
+  .woocommerce div.product p.price {
+    font-size: 16px;
+    display: block;
+    color: #9be3e3; }
+    .woocommerce div.product span.price del,
+    .woocommerce div.product p.price del {
+      color: #adadad; }
+  .woocommerce div.product h3 {
+    font-size: 22px;
+    margin-top: 15px;
+    margin-bottom: 0; }
+  .woocommerce div.product .button-wrap {
+    text-align: center;
+    margin-top: 10px; }
+    .woocommerce div.product .button-wrap a.button {
+      border-radius: 0;
+      background-color: #fff;
+      border: 1px solid #9be3e3;
+      font-family: "Orator", sans-serif;
+      color: #9be3e3; }
 
 /*# sourceMappingURL=style.css.map */

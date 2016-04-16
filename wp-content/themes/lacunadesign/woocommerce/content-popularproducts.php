@@ -1,19 +1,26 @@
-<h2>Populær varer</h2>
+<div class="row products">
+<?php 
+// the query
+$popularproduct = new WP_Query( array( 'page_id' => 127 ) ); ?>
 
-<?php
-	$args = array(
-	'post_type' => 'product',
-	'posts_per_page' => 4,
-	'meta_key' => 'total_sales',
-	'orderby' => 'meta_value_num',
-	);
-	$loop = new WP_Query( $args );
-		if ( $loop->have_posts() ) {
-			while ( $loop->have_posts() ) : $loop->the_post();
-				get_template_part( 'woocommerce/content', 'product' );
-			endwhile;
-		} else {
-		echo __( 'No products found' );
-		}
-	wp_reset_query();
-?>
+<?php if ( $popularproduct->have_posts() ) : ?>
+
+	<!-- pagination here -->
+
+	<!-- the loop -->
+	<?php while ( $popularproduct->have_posts() ) : $popularproduct->the_post(); ?>
+		<div class="col-sm-12">
+			<h2><?php the_title(); ?></h2>
+			<?php the_content(); ?>
+		</div>
+	<?php endwhile; ?>
+	<!-- end of the loop -->
+
+	<!-- pagination here -->
+
+	<?php wp_reset_postdata(); ?>
+
+<?php else : ?>
+	<p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+<?php endif; ?>
+</div>

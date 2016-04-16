@@ -13,12 +13,14 @@
 
 	</div>
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
+	<footer id="footer" class="footer-wrap" role="contentinfo">
+		<div class="site-footer">
 		<div class="container">
 			<p>&copy; Copyright <?php echo date('Y'); ?> - <?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?></p>
 			<span class="sep"> | </span>
 			<a href="mailto:info@lacunadesign.dk" target="_bland">info@lacunadesign.dk</a>
 			</div>
+		</div>
 	</footer>
 </div>
 

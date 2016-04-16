@@ -1,3 +1,4 @@
+@import '../variables-site/colors';
 #primary-nav {
 
 	.navbar {
@@ -7,7 +8,12 @@
 	 		text-align: center;
 	 	}
 	.navbar-nav {
-
+		> li > a {
+			color: $color__link;
+			&:hover {
+				background-color: $color__background-hover;
+			}
+		}
 	  // Uncollapse the nav
 	  @media (min-width: 768px) {
 	    float: none;

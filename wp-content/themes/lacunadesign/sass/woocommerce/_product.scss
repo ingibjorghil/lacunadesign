@@ -1,0 +1,39 @@
+.woocommerce {
+	div.product {
+			margin-bottom: 20px;
+			padding-left: 20px;
+			padding-right: 20px;
+			
+			.item-wrap {
+				background-color: #fff;
+				box-shadow: 0 0 2px rgba(173,173,173,.7);
+				padding: 5px 5px 10px 5px;
+			}
+
+			span.price,
+			p.price {
+				font-size: 16px;
+				display: block;
+				color: $color__green;
+				del {
+					color: $color__dark-grey;
+				}
+			}
+			h3 {
+				font-size: 22px;
+				margin-top: 15px;
+				margin-bottom: 0;
+			}
+			.button-wrap {
+				text-align: center;
+				margin-top: 10px;
+				a.button {
+					border-radius: 0;
+					background-color: #fff;
+					border: 1px solid $color__green;
+					font-family: $font__heading;
+					color: $color__green;
+				}
+			}
+		}
+	}
