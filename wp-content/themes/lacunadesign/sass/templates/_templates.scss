@@ -57,8 +57,10 @@ html, body {
 	height: 50px;
 }
 .site-branding{
-	width: 200px;
 	height: auto;
+	img {
+		max-width: 350px;
+	}
 }
 body{
 	background-size: cover;

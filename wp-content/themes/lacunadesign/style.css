@@ -393,8 +393,9 @@ html, body {
   height: 50px; }
 
 .site-branding {
-  width: 200px;
   height: auto; }
+  .site-branding img {
+    max-width: 350px; }
 
 body {
   background-size: cover;
@@ -473,7 +474,7 @@ a {
   text-decoration: none; }
   a:hover, a:visited {
     color: #3a3a36;
-    text-decoration: underline; }
+    text-decoration: none; }
   a:focus {
     outline: none; }
 
@@ -991,8 +992,9 @@ html, body {
   height: 50px; }
 
 .site-branding {
-  width: 200px;
   height: auto; }
+  .site-branding img {
+    max-width: 350px; }
 
 body {
   background-size: cover;
@@ -1153,21 +1155,57 @@ body {
 # Woocommerce - Product
 --------------------------------------------------------------*/
 .woocommerce div.product {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   padding-left: 20px;
   padding-right: 20px; }
   .woocommerce div.product .item-wrap {
     background-color: #fff;
     box-shadow: 0 0 2px rgba(173, 173, 173, 0.7);
-    padding: 5px 5px 10px 5px; }
+    padding: 5px 5px 15px 5px; }
+  .woocommerce div.product .item-text {
+    padding: 0 10px; }
   .woocommerce div.product span.price,
   .woocommerce div.product p.price {
-    font-size: 16px;
+    font-size: 14px;
     display: block;
     color: #9be3e3; }
     .woocommerce div.product span.price del,
     .woocommerce div.product p.price del {
       color: #adadad; }
+    .woocommerce div.product span.price del,
+    .woocommerce div.product p.price del {
+      float: right;
+      color: #adadad;
+      opacity: 0.8; }
+  .woocommerce div.product span.onsale, .woocommerce div.product span.soldout {
+    min-height: 2.3em;
+    min-width: 6.7em;
+    border-radius: 0;
+    text-transform: uppercase;
+    background-color: #191919;
+    top: inherit;
+    left: 3em;
+    line-height: 26px;
+    padding: .202em;
+    font-size: 10px; }
+    .woocommerce div.product span.onsale:before, .woocommerce div.product span.soldout:before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 0.2em;
+      margin: 2px 22px 0 22px;
+      background: #ffffff;
+      position: absolute; }
+    .woocommerce div.product span.onsale:after, .woocommerce div.product span.soldout:after {
+      content: "";
+      position: absolute;
+      top: 30px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-color: #191919 transparent transparent transparent;
+      border-width: 10px 33px 0 34px; }
   .woocommerce div.product h3 {
     font-size: 22px;
     margin-top: 15px;
@@ -1181,5 +1219,9 @@ body {
       border: 1px solid #9be3e3;
       font-family: "Orator", sans-serif;
       color: #9be3e3; }
+.woocommerce span.soldout {
+  background: none;
+  text-shadow: none;
+  font-weight: 700; }
 
 /*# sourceMappingURL=style.css.map */

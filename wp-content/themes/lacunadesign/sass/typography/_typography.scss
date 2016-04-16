@@ -20,7 +20,7 @@ a{
 	&:hover,
 	&:visited{
 		color: $font-color;
-		text-decoration: underline;
+		text-decoration: none;
 	}
 	&:focus{
 		outline: none;
