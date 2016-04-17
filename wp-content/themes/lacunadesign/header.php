@@ -60,7 +60,9 @@
 					<?php
 					endif; ?>
 				</div>
-				<div class="col-sm-6"></div>
+				<div class="col-sm-6">
+					<?php dynamic_sidebar( 'search-form' ); ?>
+				</div>
 			</div>
 		</div>
 		<div id="primary-nav" class="hidden-xs">

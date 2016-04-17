@@ -1178,28 +1178,28 @@ body {
       color: #adadad;
       opacity: 0.8; }
   .woocommerce div.product span.onsale, .woocommerce div.product span.soldout {
-    min-height: 2.3em;
+    min-height: 3em;
     min-width: 6.7em;
     border-radius: 0;
     text-transform: uppercase;
     background-color: #191919;
     top: inherit;
     left: 3em;
-    line-height: 26px;
-    padding: .202em;
+    line-height: 24px;
+    padding: 0.6em .202em .202em;
     font-size: 10px; }
     .woocommerce div.product span.onsale:before, .woocommerce div.product span.soldout:before {
       content: '';
       display: block;
       width: 20px;
       height: 0.2em;
-      margin: 2px 22px 0 22px;
+      margin: 0 22px;
       background: #ffffff;
       position: absolute; }
     .woocommerce div.product span.onsale:after, .woocommerce div.product span.soldout:after {
       content: "";
       position: absolute;
-      top: 30px;
+      top: 32px;
       left: 0;
       width: 0;
       height: 0;
@@ -1222,6 +1222,7 @@ body {
 .woocommerce span.soldout {
   background: none;
   text-shadow: none;
-  font-weight: 700; }
+  font-weight: 700;
+  text-decoration: line-through; }
 
 /*# sourceMappingURL=style.css.map */

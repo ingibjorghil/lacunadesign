@@ -1,4 +1,7 @@
 <?php get_header(); ?>
+<section id="front-images">
+	<?php get_template_part( 'template-parts/content', 'frontimages' ); ?>
+</section>
 <section id="popular-item">
 	<div class="wrapper-skew">
 		<div class="wrapper-content">
