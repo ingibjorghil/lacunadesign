@@ -122,9 +122,6 @@ function lacunadesign_widgets_init() {
 }
 add_action( 'widgets_init', 'lacunadesign_widgets_init' );
 
-	
-
-
 
 /**
  * Enqueue scripts and styles.
@@ -132,6 +129,7 @@ add_action( 'widgets_init', 'lacunadesign_widgets_init' );
 function lacunadesign_scripts() {
 	
 	wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . '/sass/bootstrap.css', array(), '3.3.6', 'all' );
+	wp_enqueue_style( 'font-awesome', get_stylesheet_directory_uri() . '/fonts/font-awesome/css/font-awesome.min.css', '4.5.0', 'all' );
 	wp_enqueue_style( 'lacunadesign-style', get_stylesheet_uri() );
 	
 	wp_enqueue_script( 'lacunadesign-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
@@ -180,77 +178,69 @@ add_filter( 'post_class', 'woo_custom_add_post_classes', 10 );
         if ( $current_count % 2 == 0 ) { $oddeven = 'even'; } else { $oddeven = 'odd'; }
  
         // Add the classes to the array of CSS classes.
-        $classes[] = 'col-sm-3';
+        $classes[] = 'col-md-3 col-sm-4';
  
         return $classes;
  
     } // End woo_custom_add_post_classes()
 
-function designers_post_type() {
-   
-   // Labels
-	$labels = array(
-		'name' => _x("Designers", "post type general name"),
-		'singular_name' => _x("Designers", "post type singular name"),
-		'menu_name' => 'Designers',
-		'add_new' => _x("Add New", "Designers item"),
-		'add_new_item' => __("Add New Profile"),
-		'edit_item' => __("Edit Profile"),
-		'new_item' => __("New Profile"),
-		'view_item' => __("View Profile"),
-		'search_items' => __("Search Profiles"),
-		'not_found' =>  __("No Profiles Found"),
-		'not_found_in_trash' => __("No Profiles Found in Trash"),
-		'parent_item_colon' => ''
-	);
-	
-	// Register post type
-	register_post_type('designers' , array(
-		'labels' => $labels,
-		'public' => true,
-		'has_archive' => false,
-		'menu_icon' => 'dashicons-universal-access',
-		'rewrite' => false,
-		'supports' => array('title', 'editor', 'thumbnail')
-	) );
-}
-add_action( 'init', 'designers_post_type', 0 );
 
 /**
-	*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
- 	*** Register `department` taxonomy
- 	*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
- */
-function Designers_taxonomy() {
-	
-	// Labels
-	$singular = 'Department';
-	$plural = 'Departments';
-	$labels = array(
-		'name' => _x( $plural, "taxonomy general name"),
-		'singular_name' => _x( $singular, "taxonomy singular name"),
-		'search_items' =>  __("Search $singular"),
-		'all_items' => __("All $singular"),
-		'parent_item' => __("Parent $singular"),
-		'parent_item_colon' => __("Parent $singular:"),
-		'edit_item' => __("Edit $singular"),
-		'update_item' => __("Update $singular"),
-		'add_new_item' => __("Add New $singular"),
-		'new_item_name' => __("New $singular Name"),
-	);
+         * Create custom taxonomy for products
+         */    
+        function designer_taxonomy() {
+            $labels = array(
+                'name'              => _x( 'Designer', 'woocommerce' ),
+                'singular_name'     => _x( 'Designer', 'woocommerce' ),
+                'search_items'      => __( 'Search Designer', 'woocommerce' ),
+                'all_items'         => __( 'All Designer', 'woocommerce' ),
+                'parent_item'       => __( 'Parent Designer', 'woocommerce' ),
+                'parent_item_colon' => __( 'Parent Designer:', 'woocommerce' ),
+                'edit_item'         => __( 'Edit Designer', 'woocommerce' ), 
+                'update_item'       => __( 'Update Designer', 'woocommerce' ),
+                'add_new_item'      => __( 'Add New Designer', 'woocommerce' ),
+                'new_item_name'     => __( 'New Designer', 'woocommerce' ),
+                'menu_name'         => __( 'Designers', 'woocommerce' ),
+                'search_items'      => __( 'Search Designer', 'woocommerce' ),
+            );
+        
+        $args = array(
+            'labels' => $labels,
+            'hierarchical' => true,
+            'show_ui' => true,
+            'query_var' => true,
+            'rewrite' => true,
+            'show_admin_column' => true,
+            'capabilities'          => array(
+					'manage_terms' => 'manage_product_terms',
+					'edit_terms'   => 'edit_product_terms',
+					'delete_terms' => 'delete_product_terms',
+					'assign_terms' => 'assign_product_terms',
+				),
+        );
+        register_taxonomy( 'designer', 'product', $args );        
+    }
+    add_action( 'init', 'designer_taxonomy', 0 );
 
-	// Register and attach to 'Employees' post type
-	register_taxonomy( strtolower($singular), 'designers', array(
-		'public' => true,
-		'show_ui' => true,
-		'show_in_nav_menus' => true,
-		'hierarchical' => true,
-		'query_var' => true,
-		'rewrite' => false,
-		'labels' => $labels
-	) );
+
+function wpse53892_taxonomy_template_redirect() {
+
+    // Only modify custom taxonomy template redirect
+    if ( is_tax('designer') ) {
+        // Get the queried term
+        $term = get_queried_object();
+
+        // Determine if term has a parent;
+        // I *think* this will work; if not see above
+        if ( 0 != $term->parent ) {
+            // Tell WordPress to use the parent template
+            $parent = get_term( $term->parent );
+            // Load parent taxonomy template
+            get_query_template( 'woocommerce', 'taxonomy-' . $term->taxonomy . '-' . $parent->slug . 'php' );
+        }
+    }
 }
-add_action( 'init', 'designers_taxonomy', 0 );
+add_action( 'template_redirect', 'wpse53892_taxonomy_template_redirect' );
 
 add_filter( 'woocommerce_product_add_to_cart_text' , 'custom_woocommerce_product_add_to_cart_text' );
 /**
@@ -269,7 +259,7 @@ function custom_woocommerce_product_add_to_cart_text() {
 			return __( 'View products', 'woocommerce' );
 		break;
 		case 'simple':
-			return __( 'Add to cart', 'woocommerce' );
+			return __( 'Sæt i kurv', 'woocommerce' );
 		break;
 		case 'variable':
 			return __( 'Select options', 'woocommerce' );
@@ -278,6 +268,22 @@ function custom_woocommerce_product_add_to_cart_text() {
 			return __( 'Read more', 'woocommerce' );
 	}
 	
+}
+
+function remove_loop_button(){
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+}
+add_action('init','remove_loop_button');
+
+
+
+/*STEP 2 -ADD NEW BUTTON THAT LINKS TO PRODUCT PAGE FOR EACH PRODUCT */
+
+add_action('woocommerce_after_shop_loop_item','replace_add_to_cart');
+function replace_add_to_cart() {
+global $product;
+$link = $product->get_permalink();
+echo do_shortcode('<div class="button-wrap"><a href="'.$link.'" class="button view-product">Se mere</a></div>');
 }
 
 /**

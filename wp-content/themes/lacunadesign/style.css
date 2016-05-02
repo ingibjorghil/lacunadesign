@@ -409,8 +409,7 @@ body {
 .footer-wrap {
   position: relative;
   margin-top: 20px;
-  padding: 20px 0;
-  height: 100%; }
+  padding: 20px 0; }
   .footer-wrap .site-footer {
     bottom: 0;
     width: 100%;
@@ -723,6 +722,10 @@ a {
   margin-left: auto;
   margin-right: auto; }
 
+.no-padding {
+  padding-left: 0;
+  padding-right: 0; }
+
 /*--------------------------------------------------------------
 # Clearings
 --------------------------------------------------------------*/
@@ -827,6 +830,16 @@ a {
   margin-bottom: 0;
   margin-top: 0;
   padding: 0; }
+
+.front-image-large {
+  height: 450px;
+  width: 100%;
+  object-fit: cover; }
+
+.front-image-small {
+  height: 225px;
+  width: 100%;
+  object-fit: cover; }
 
 /* Make sure embeds and iframes fit their containers. */
 embed,
@@ -1008,8 +1021,7 @@ body {
 .footer-wrap {
   position: relative;
   margin-top: 20px;
-  padding: 20px 0;
-  height: 100%; }
+  padding: 20px 0; }
   .footer-wrap .site-footer {
     bottom: 0;
     width: 100%;
@@ -1155,10 +1167,9 @@ body {
 # Woocommerce - Product
 --------------------------------------------------------------*/
 .woocommerce div.product {
-  margin-bottom: 40px;
-  padding-left: 20px;
-  padding-right: 20px; }
+  margin-bottom: 40px; }
   .woocommerce div.product .item-wrap {
+    min-height: 320px;
     background-color: #fff;
     box-shadow: 0 0 2px rgba(173, 173, 173, 0.7);
     padding: 5px 5px 15px 5px; }
@@ -1168,7 +1179,7 @@ body {
   .woocommerce div.product p.price {
     font-size: 14px;
     display: block;
-    color: #9be3e3; }
+    color: #5fd2d2; }
     .woocommerce div.product span.price del,
     .woocommerce div.product p.price del {
       color: #adadad; }
@@ -1207,7 +1218,7 @@ body {
       border-color: #191919 transparent transparent transparent;
       border-width: 10px 33px 0 34px; }
   .woocommerce div.product h3 {
-    font-size: 22px;
+    font-size: 20px;
     margin-top: 15px;
     margin-bottom: 0; }
   .woocommerce div.product .button-wrap {
@@ -1216,9 +1227,9 @@ body {
     .woocommerce div.product .button-wrap a.button {
       border-radius: 0;
       background-color: #fff;
-      border: 1px solid #9be3e3;
+      border: 1px solid #5fd2d2;
       font-family: "Orator", sans-serif;
-      color: #9be3e3; }
+      color: #5fd2d2; }
 .woocommerce span.soldout {
   background: none;
   text-shadow: none;

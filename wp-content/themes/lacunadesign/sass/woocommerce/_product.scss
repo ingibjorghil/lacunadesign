@@ -1,10 +1,9 @@
 .woocommerce {
 	div.product {
 			margin-bottom: 40px;
-			padding-left: 20px;
-			padding-right: 20px;
 			
 			.item-wrap {
+				min-height: 320px;
 				background-color: #fff;
 				box-shadow: 0 0 2px rgba(173,173,173,.7);
 				padding: 5px 5px 15px 5px;
@@ -61,7 +60,7 @@
 			}
 			
 			h3 {
-				font-size: 22px;
+				font-size: 20px;
 				margin-top: 15px;
 				margin-bottom: 0;
 			}

@@ -1,0 +1,21 @@
+@import url(https://fonts.googleapis.com/css?family=Anaheim|Poiret+One);
+@import 'templates';
+
+h1, h2, h3, h4, h5, h6{
+	font-family: 'Orator', sans-serif;
+}
+body{
+	font-family: 'Anaheim', sans-serif;
+}
+a{
+	color: $font-color;
+	text-decoration: none;
+	&:hover,
+	&:visited{
+		color: $font-color;
+		text-decoration: underline;
+	}
+	&:focus{
+		outline: none;
+	}
+}
