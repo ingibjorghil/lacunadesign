@@ -39,6 +39,37 @@ add_action( 'wp_enqueue_scripts', 'lacunadesign_scripts' );
  * Note: DO NOT! alter or remove the code above this text and only add your custom PHP functions below this text.
  */
 
+function designerlogo_post_type() {
+   
+   // Labels
+    $labels = array(
+        'name' => _x("Designer logo", "post type general name"),
+        'singular_name' => _x("Designer logo", "post type singular name"),
+        'menu_name' => 'Designer logo',
+        'add_new' => _x("Add New", "Designer logo"),
+        'add_new_item' => __("Add New Designer logo"),
+        'edit_item' => __("Edit Designer logo"),
+        'new_item' => __("New Designer logo"),
+        'view_item' => __("View Designer logo"),
+        'search_items' => __("Search Designer logo"),
+        'not_found' =>  __("No Designer logo Found"),
+        'not_found_in_trash' => __("No Designer logo Found in Trash"),
+        'parent_item_colon' => ''
+    );
+    
+    // Register post type
+    register_post_type('designerlogo' , array(
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => false,
+        'menu_icon' => 'dashicons-id',
+        'rewrite' => false,
+        'supports' => array('title', 'thumbnail')
+    ) );
+}
+
+add_action( 'init', 'designerlogo_post_type', 0 );
+
 /**
          * Create custom taxonomy for products
          */    
@@ -77,6 +108,7 @@ add_action( 'wp_enqueue_scripts', 'lacunadesign_scripts' );
     add_action( 'init', 'designer_taxonomy', 0 );
 
 
+
 add_filter( 'post_class', 'woo_custom_add_post_classes', 10 );
  
     function woo_custom_add_post_classes ( $classes ) {
@@ -92,7 +124,7 @@ add_filter( 'post_class', 'woo_custom_add_post_classes', 10 );
         if ( $current_count % 2 == 0 ) { $oddeven = 'even'; } else { $oddeven = 'odd'; }
  
         // Add the classes to the array of CSS classes.
-        $classes[] = 'col-md-3 col-sm-4';
+        $classes[] = 'col-md-4 col-sm-6';
  
         return $classes;
  
@@ -100,3 +132,160 @@ add_filter( 'post_class', 'woo_custom_add_post_classes', 10 );
 
 // Register Custom Navigation Walker
 require_once('wp_bootstrap_navwalker.php');
+
+if ( ! function_exists( 'storefront_before_content' ) ) {
+    function storefront_before_content() {
+        ?>
+        <div id="primary" class="content-primary container">
+            <main id="main" class="site-main" role="main">
+            <?php
+    }
+}
+/**
+ * Sorting wrapper
+ * @since   1.4.3
+ * @return  void
+ */
+function lacuna_sorting_wrapper() {
+    echo '<div class="product-sorting">';
+}
+
+/**
+ * Sorting wrapper close
+ * @since   1.4.3
+ * @return  void
+ */
+function lacuna_sorting_wrapper_close() {
+    echo '</div>';
+}
+
+remove_action( 'woocommerce_before_shop_loop',         'storefront_sorting_wrapper',               9 );
+remove_action( 'woocommerce_before_shop_loop',         'woocommerce_catalog_ordering',             10 );
+remove_action( 'woocommerce_before_shop_loop',         'woocommerce_result_count',                 20 );
+remove_action( 'woocommerce_before_shop_loop',         'storefront_woocommerce_pagination',        30 );
+remove_action( 'woocommerce_before_shop_loop',         'storefront_sorting_wrapper_close',         31 );
+
+add_action( 'woocommerce_before_shop_loop',         'lacuna_sorting_wrapper',               9 );
+add_action( 'woocommerce_before_shop_loop',         'woocommerce_result_count',                 20 );
+add_action( 'woocommerce_before_shop_loop',         'woocommerce_catalog_ordering',             10 );
+add_action( 'woocommerce_before_shop_loop',         'storefront_woocommerce_pagination',        30 );
+add_action( 'woocommerce_before_shop_loop',         'lacuna_sorting_wrapper_close',         31 );
+
+// Remove the product rating display on product loops
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
+
+
+/**
+ * Related Products Args
+ * @param  array $args related products args
+ * @since 1.0.0
+ * @return  array $args related products args
+ */
+function storefront_related_products_args( $args ) {
+    $args = apply_filters( 'storefront_related_products_args', array(
+        'posts_per_page' => 4,
+        'columns'        => 4,
+    ) );
+
+    return $args;
+}
+
+add_action( 'get_header', 'remove_storefront_sidebar' );
+
+function remove_storefront_sidebar() {
+    if ( is_product() ) {
+        remove_action( 'storefront_sidebar', 'storefront_get_sidebar',          10 );
+    }
+}
+
+
+add_action( 'init', 'storefront_custom_logo' );
+function storefront_custom_logo() {
+    remove_action( 'storefront_header', 'storefront_site_branding', 20 );
+    add_action( 'storefront_header', 'storefront_display_custom_logo', 20 );
+}
+
+function storefront_display_custom_logo() {
+?>
+    <div class="row">
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo-link" rel="home">
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/lacunalogo_noback.svg" alt="<?php echo get_bloginfo( 'name' ); ?>" />
+        </a>
+<?php
+}
+add_action( 'init', 'storefront_custom_product_search');
+function Storefront_custom_product_search() {
+    remove_action( 'storefront_header', 'storefront_product_search', 40);
+    add_action( 'storefront_custom_header', 'storefront_display_custom_product_search', 40);
+}
+    function storefront_display_custom_product_search() {
+        if ( is_woocommerce_activated() ) { ?>
+            <div class="site-search">
+                <?php the_widget( 'WC_Widget_Product_Search', 'title=' ); ?>
+            </div>
+            </div>
+        <?php
+        }
+    }
+
+add_action( 'init', 'storefront_custom_secondary_navigation' );
+function storefront_custom_secondary_navigation(){
+    remove_action( 'storefront_header', 'storefront_secondary_navigation',  20  );
+    add_action( 'storefront_custom_header', 'storefront_display_custom_secondary_navigation',  20 );
+}
+function storefront_display_custom_secondary_navigation() {
+        ?>
+        <div class="header-cart-wrap">
+            <div class="container">
+                <nav class="secondary-navigation" role="navigation" aria-label="<?php esc_html_e( 'Secondary Navigation', 'storefront' ); ?>">
+                    <?php
+                        wp_nav_menu(
+                            array(
+                                'theme_location'    => 'secondary',
+                                'fallback_cb'       => '',
+                            )
+                        );
+                    ?>
+                </nav><!-- #site-navigation -->
+        <?php
+    }
+
+add_action( 'init', 'storefront_custom_header_cart' );
+function storefront_custom_header_cart() {
+    remove_action( 'storefront_header', 'storefront_header_cart',   30  );
+    add_action('storefront_custom_header', 'storefront_display_custom_header_cart',  30  );
+function storefront_display_custom_header_cart() {
+        if ( is_woocommerce_activated() ) {
+            if ( is_cart() ) {
+                $class = 'current-menu-item';
+            } else {
+                $class = '';
+            }
+        ?>
+                <ul class="site-header-cart menu">
+                    <li class="<?php echo esc_attr( $class ); ?>">
+                        <?php storefront_cart_link(); ?>
+                    </li>
+                    <li>
+                        <?php the_widget( 'WC_Widget_Cart', 'title=' ); ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+        <?php
+        }
+    }
+}
+
+remove_action( 'storefront_header', 'storefront_skip_links',            0 );
+remove_action( 'storefront_header', 'storefront_secondary_navigation',  20 );
+remove_action( 'storefront_header', 'storefront_site_branding',         30 );
+remove_action( 'storefront_header', 'storefront_primary_navigation',    50 );
+
+add_action( 'storefront_custom_header', 'storefront_skip_links',                           0 );
+add_action( 'storefront_custom_header', 'storefront_display_custom_secondary_navigation',  20 );
+add_action( 'storefront_custom_header', 'storefront_display_custom_header_cart',           30 );
+add_action( 'storefront_custom_header', 'storefront_display_custom_logo',                  40 );
+add_action( 'storefront_custom_header', 'storefront_custom_product_search',                50 );
+add_action( 'storefront_custom_header', 'storefront_primary_navigation',                   60 );

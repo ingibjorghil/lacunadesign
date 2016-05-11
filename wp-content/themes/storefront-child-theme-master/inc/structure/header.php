@@ -51,101 +51,24 @@ if ( ! function_exists( 'storefront_primary_navigation' ) ) {
 	 */
 	function storefront_primary_navigation() {
 		?>
-		<div id="top-nav" class="hidden-xs">
-			<nav class="navbar navbar-top navbar-default" role="navigation">
-			    <div class="container nav-content">
-				    <div id="navbar-top" class="collapse navbar-collapse navbar-ex3-collapse">
-				        <?php
-				        wp_nav_menu( array(
-				        	'menu' => 'secondary',
-				            'theme_location' => 'secondary',
-				            'depth' => 2,
-				            'container' => true,
-				            'menu_class' => 'nav navbar-nav navbar-right',
-				            'fallback_cb' => 'wp_page_menu',
-				            'walker' => new wp_bootstrap_navwalker())
-				        );
-				        ?>
-				    </div>
-				</div>
-			</nav>
-		</div>
-		<div class="hidden-xs site-branding container">
-			<div class="row">
-				<div class="col-sm-6">
-					<?php
-					if ( is_front_page() && is_home() ) : ?>
-						<h1 class="site-title"><a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'><img src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'></a></h1>
-					<?php else : ?>
-						<h1 class="site-title"><a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'><img src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'></a></h1>
-					<?php
-					endif;
+		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_html_e( 'Primary Navigation', 'storefront' ); ?>">
+		<button class="menu-toggle" aria-controls="primary-navigation" aria-expanded="false"><?php echo esc_attr( apply_filters( 'storefront_menu_toggle_text', __( 'Navigation', 'storefront' ) ) ); ?></button>
+			<?php
+			wp_nav_menu(
+				array(
+					'theme_location'	=> 'primary',
+					'container_class'	=> 'primary-navigation',
+					)
+			);
 
-					$description = get_bloginfo( 'description', 'display' );
-					if ( $description || is_customize_preview() ) : ?>
-					<?php
-					endif; ?>
-				</div>
-				<div class="col-sm-6">
-					<?php dynamic_sidebar( 'search-form' ); ?>
-				</div>
-			</div>
-		</div>
-		<div id="primary-nav" class="hidden-xs">
-			<nav class="navbar navbar-top navbar-default" role="navigation">
-			    <div class="container nav-content">
-				    <div id="navbar-primary" class="navbar-collapse navbar-ex1-collapse">
-				        <?php
-				        wp_nav_menu( array(
-				        	'menu' => 'primary',
-				            'theme_location' => 'primary',
-				            'depth' => 2,
-				            'container' => true,
-				            'menu_class' => 'nav navbar-nav',
-				            'fallback_cb' => 'wp_page_menu',
-				            'walker' => new wp_bootstrap_navwalker())
-				        );
-				        ?>
-				    </div>
-				</div>
-			</nav>
-		</div>
-		<div id="mobile-nav" class="visible-xs">
-			<nav class="visible-xs navbar navbar-fixed-top navbar-default" role="navigation">
-			    <div class="container nav-content">
-			    	<div class="navbar-header">
-			    		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-			            	<span class="sr-only">Toggle navigation</span>
-			            	<span class="icon-bar"></span>
-			            	<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-			    		<?php if ( get_theme_mod( 'themeslug_logo' ) ) : ?>
-				        <div class='site-logo'>
-				        	<a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'><img src='<?php echo esc_url( get_theme_mod( 'themeslug_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'></a>
-				        </div>
-			        	<?php else : ?>
-			          	<hgroup>
-			            	<h1 class='site-title'><a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'><?php bloginfo( 'name' ); ?></a></h1>
-			     		</hgroup>
-			          	<?php endif; ?>
-			    	</div>
-				    <div id="navbar-collapse" class="collapse navbar-collapse navbar-ex2-collapse">
-				        <?php
-				        wp_nav_menu( array(
-				        	'menu' => 'handheld',
-				            'theme_location' => 'handheld',
-				            'depth' => 2,
-				            'container' => true,
-				            'menu_class' => 'nav navbar-nav navbar-right',
-				            'fallback_cb' => 'wp_page_menu',
-				            'walker' => new wp_bootstrap_navwalker())
-				        );
-				        ?>
-				    </div>
-				</div>
-			</nav>
-		</div>
+			wp_nav_menu(
+				array(
+					'theme_location'	=> 'handheld',
+					'container_class'	=> 'handheld-navigation',
+					)
+			);
+			?>
+		</nav><!-- #site-navigation -->
 		<?php
 	}
 }

@@ -72,10 +72,11 @@ body{
 	overflow-x: hidden;
 }
 .footer-wrap {
-	position: relative;
+	position: absolute;
 	margin-top: 20px;
 	padding: 20px 0;
 	height:100%;
+	bottom: 0;
 	.site-footer{
 		bottom: 0;
 		width: 100%;

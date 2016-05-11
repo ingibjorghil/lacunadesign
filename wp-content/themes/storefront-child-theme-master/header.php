@@ -23,7 +23,6 @@
 	do_action( 'storefront_before_header' ); ?>
 
 	<header id="masthead" class="site-header" role="banner" <?php if ( get_header_image() != '' ) { echo 'style="background-image: url(' . esc_url( get_header_image() ) . ');"'; } ?>>
-		<div class="col-full">
 
 			<?php
 			/**
@@ -35,7 +34,7 @@
 			 * @hooked storefront_primary_navigation - 50
 			 * @hooked storefront_header_cart - 60
 			 */
-			do_action( 'storefront_header' ); ?>
+			do_action( 'storefront_custom_header' ); ?>
 
 		</div>
 	</header><!-- #masthead -->
@@ -47,9 +46,10 @@
 	do_action( 'storefront_before_content' ); ?>
 
 	<div id="content" class="site-content" tabindex="-1">
-
-		<?php
-		/**
-		 * @hooked woocommerce_breadcrumb - 10
-		 */
-		do_action( 'storefront_content_top' ); ?>
+		<div class="container">
+			<?php
+			/**
+			 * @hooked woocommerce_breadcrumb - 10
+			 */
+			do_action( 'storefront_content_top' ); ?>
+		</div>

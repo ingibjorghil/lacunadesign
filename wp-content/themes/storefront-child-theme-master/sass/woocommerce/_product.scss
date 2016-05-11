@@ -1,31 +1,28 @@
-.woocommerce {
-	div.product {
+.site-main {
+	.woocommerce {
+		div.products {
+			div.product {
 			margin-bottom: 40px;
-			padding-left: 20px;
-			padding-right: 20px;
-			
 			.item-wrap {
 				background-color: #fff;
 				box-shadow: 0 0 2px rgba(173,173,173,.7);
 				padding: 5px 5px 15px 5px;
+
 			}
 			.item-text {
 				padding: 0 10px;
+				text-align: center;
 			}
 
-			span.price,
-			p.price {
+			span.price {
 				font-size: 14px;
 				display: block;
 				color: $color__green;
+				font-weight: 800;
 				del {
 					color: $color__dark-grey;
+					opacity: 0.8;
 				}
-			del {
-				float: right;
-				color: $color__dark-grey;
-				opacity: 0.8;
-			}
 			}
 			span.onsale {
 				min-height: 3em;
@@ -61,34 +58,52 @@
 				    border-width: 10px 33px 0 34px;
 				}
 			}
-			
+				
 			h3 {
 				font-size: 22px;
 				margin-top: 15px;
 				margin-bottom: 0;
 			}
-			.button-wrap {
+			a.button {
 				text-align: center;
 				margin-top: 10px;
-				a.button {
-					border-radius: 0;
-					background-color: #fff;
-					border: 1px solid $color__green;
-					font-family: $font__heading;
+				border-radius: 0;
+				background-color: #fff;
+				border: 1px solid $color__green;
+				font-family: $font__heading;
+				font-size: 1em;
+				color: $color__green;
+				padding: 10px;
+				box-shadow: none;
+			}
+			.star-rating {
+				span {
+				&:before {
 					color: $color__green;
-					padding: 10px;
-					box-shadow: none;
+				}
 				}
 			}
+				
 		}
-	span.soldout {
-			@extend span.onsale;
-			background: none;
-			text-shadow: none;
-			font-weight: 700;
-			text-decoration: line-through;
-			-webkit-box-shadow: none;
-			box-shadow: none;
-		}	
+		span.soldout {
+				@extend span.onsale;
+				background: none;
+				text-shadow: none;
+				font-weight: 700;
+				text-decoration: line-through;
+				-webkit-box-shadow: none;
+				box-shadow: none;
+			}	
+		}
 	}
-
+}
+.wrapper-content {
+	.products {
+		.product {
+			width: 25%;
+		}
+	}
+}
+.storefront-sorting {
+	margin-bottom: 1.618em;
+}

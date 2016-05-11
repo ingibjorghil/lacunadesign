@@ -2,25 +2,36 @@
 /**
  * The template for displaying the footer.
  *
- * Contains the closing of the #content div and all content after.
+ * Contains the closing of the #content div and all content after
  *
- * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
- *
- * @package Lacuna_Design
+ * @package storefront
  */
 
 ?>
 
-	<footer id="footer" class="footer-wrap" role="contentinfo">
-		<div class="site-footer">
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	<?php do_action( 'storefront_before_footer' ); ?>
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="container">
-			<p>&copy; Copyright <?php echo date('Y'); ?> - <?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?></p>
-			<span class="sep"> | </span>
-			<a href="mailto:info@lacunadesign.dk" target="_bland">info@lacunadesign.dk</a>
-			</div>
-		</div>
-	</footer>
-</div>
+
+			<?php
+			/**
+			 * Functions hooked in to storefront_footer action
+			 *
+			 * @hooked storefront_footer_widgets - 10
+			 * @hooked storefront_credit         - 20
+			 */
+			do_action( 'storefront_footer' ); ?>
+
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	<?php do_action( 'storefront_after_footer' ); ?>
+
+</div><!-- #page -->
 
 <?php wp_footer(); ?>
 
