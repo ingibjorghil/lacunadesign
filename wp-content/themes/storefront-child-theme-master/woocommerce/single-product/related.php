@@ -47,7 +47,9 @@ if ( $products->have_posts() ) : ?>
 
 	<div class="related products">
 		<div class="related-header">
-			<h2><?php _e( 'Related Products', 'woocommerce' ); ?></h2>
+			<div class="related-header-wrap">
+				<h2><?php _e( 'Related Products', 'woocommerce' ); ?></h2>
+			</div>
 		</div>
 
 		<?php woocommerce_product_loop_start(); ?>

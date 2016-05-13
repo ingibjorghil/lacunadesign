@@ -86,27 +86,6 @@ echo do_shortcode('<div class="button-wrap"><a href="'.$link.'" class="button vi
 }
 
 
-add_filter( 'post_class', 'woo_custom_add_post_classes', 10 );
- 
-    function woo_custom_add_post_classes ( $classes ) {
-        if ( is_singular('product') ) { return $classes; }
- 
-        global $wp_query;
- 
-        // Get the number of the current post in the loop.
-        $current_count = $wp_query->current_post + 1;
- 
-        // Work out whether this post is odd or even in the list.
-        $oddeven = 'odd';
-        if ( $current_count % 2 == 0 ) { $oddeven = 'even'; } else { $oddeven = 'odd'; }
- 
-        // Add the classes to the array of CSS classes.
-        $classes[] = 'col-md-4 col-sm-6';
- 
-        return $classes;
- 
-    } // End woo_custom_add_post_classes()
-
 // Register Custom Navigation Walker
 require_once('wp_bootstrap_navwalker.php');
 
