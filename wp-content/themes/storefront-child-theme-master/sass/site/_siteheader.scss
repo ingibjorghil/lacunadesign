@@ -2,22 +2,25 @@
 	.site-header {
 		padding-top: 0;
 		.secondary-navigation {
-			width: 70%;
-			margin-right: 0;
-			margin-bottom: 0;
-			.menu {
+			width: 75%;
+			margin: 0;
+			ul.menu {
 				a {
-					padding: 2.2em .857em;
+					font-size: 22px;
+					padding: .96em .5em
 				}
 			}
-
 		}
-		
 		.main-navigation {
+			width: 100%;
+			border-bottom: 1px solid $color__dark-grey;
+			.primary-navigation {
+				text-align: center;
+			}
 			ul {
 				li {
 					a {
-						
+						padding: 1.618em 1.3em;
 						font-weight: 400;
 					}
 				}
@@ -36,20 +39,31 @@
 				box-shadow: 1px 1px 2px rgba(173,173,173,.7);
 			}
 		}
-		.site-search {
-			float: left;
-			margin-left: 46%;
-			margin-top: 30px;
-			.widget_product_search {
-				input[type=search] {
-					right: 5.249em;
-					padding: 1em 1.618em 1em 3.631em;
-				input[type=text] {
-					right: 5.249em;
-				}
+		#header-logo-search {
+			margin-top: 66.28px;
+			.site-search {
+				float: left;
+				margin-left: 32.6%;
+				margin-top: 45px;
+				margin-bottom: 45px;
+				.widget_product_search {
+					input[type=search] {
+						background-color: $color__light-grey;
+						border-radius: 0;
+						right: 5.249em;
+						padding: 1em 1.618em 1em 3.631em;
+					input[type=text] {
+						right: 5.249em;
+					}
 
+					}
 				}
 			}
+		}
+		.site-logo-link {
+			margin-left: 5em; 
+			margin-top: 1.2em;
+			margin-bottom: 1.2em;
 		}
 	}
 }
@@ -63,7 +77,15 @@
 .site-search {
 	.widget_product_search {
 		form:before {
-			top: 1.5em;
+			top: 1.2em;
+			font-size: 14px;
+			color: $color__green;
 		}
 	}
+}
+.woocommerce-breadcrumb {
+	background-color: #fff;
+}
+.widget_product_search form input[type=search] {
+	width: 78%;
 }

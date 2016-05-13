@@ -26,9 +26,7 @@ global $wp_query;
 if ( ! woocommerce_products_will_display() )
 	return;
 ?>
-<div class="row">
-	<div class="col-sm-12">
-		<div class="col-sm-6 no-padding">
+		<div class="count-wrap">
 			<p class="woocommerce-result-count">
 				<?php
 				$paged    = max( 1, $wp_query->get( 'paged' ) );
@@ -47,3 +45,4 @@ if ( ! woocommerce_products_will_display() )
 				?>
 			</p>
 		</div>
+	</div>

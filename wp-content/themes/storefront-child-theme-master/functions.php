@@ -70,49 +70,26 @@ function designerlogo_post_type() {
 
 add_action( 'init', 'designerlogo_post_type', 0 );
 
-/**
-         * Create custom taxonomy for products
-         */    
-        function designer_taxonomy() {
-            $labels = array(
-                'name'              => _x( 'Designer', 'woocommerce' ),
-                'singular_name'     => _x( 'Designer', 'woocommerce' ),
-                'search_items'      => __( 'Search Designer', 'woocommerce' ),
-                'all_items'         => __( 'All Designer', 'woocommerce' ),
-                'parent_item'       => __( 'Parent Designer', 'woocommerce' ),
-                'parent_item_colon' => __( 'Parent Designer:', 'woocommerce' ),
-                'edit_item'         => __( 'Edit Designer', 'woocommerce' ), 
-                'update_item'       => __( 'Update Designer', 'woocommerce' ),
-                'add_new_item'      => __( 'Add New Designer', 'woocommerce' ),
-                'new_item_name'     => __( 'New Designer', 'woocommerce' ),
-                'menu_name'         => __( 'Designers', 'woocommerce' ),
-                'search_items'      => __( 'Search Designer', 'woocommerce' ),
-            );
-        
-        $args = array(
-            'labels' => $labels,
-            'hierarchical' => true,
-            'show_ui' => true,
-            'query_var' => true,
-            'rewrite' => true,
-            'show_admin_column' => true,
-            'capabilities'          => array(
-					'manage_terms' => 'manage_product_terms',
-					'edit_terms'   => 'edit_product_terms',
-					'delete_terms' => 'delete_product_terms',
-					'assign_terms' => 'assign_product_terms',
-				),
-        );
-        register_taxonomy( 'designer', 'product', $args );        
-    }
-    add_action( 'init', 'designer_taxonomy', 0 );
 
+function remove_loop_button(){
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+}
+add_action('init','remove_loop_button');
+
+/*STEP 2 -ADD NEW BUTTON THAT LINKS TO PRODUCT PAGE FOR EACH PRODUCT */
+
+add_action('woocommerce_after_shop_loop_item','replace_add_to_cart');
+function replace_add_to_cart() {
+global $product;
+$link = $product->get_permalink();
+echo do_shortcode('<div class="button-wrap"><a href="'.$link.'" class="button view-product">Se mere</a></div>');
+}
 
 
 add_filter( 'post_class', 'woo_custom_add_post_classes', 10 );
  
     function woo_custom_add_post_classes ( $classes ) {
-        if ( is_singular() ) { return $classes; }
+        if ( is_singular('product') ) { return $classes; }
  
         global $wp_query;
  
@@ -136,7 +113,7 @@ require_once('wp_bootstrap_navwalker.php');
 if ( ! function_exists( 'storefront_before_content' ) ) {
     function storefront_before_content() {
         ?>
-        <div id="primary" class="content-primary container">
+        <div id="primary" class="content-primary">
             <main id="main" class="site-main" role="main">
             <?php
     }
@@ -147,7 +124,7 @@ if ( ! function_exists( 'storefront_before_content' ) ) {
  * @return  void
  */
 function lacuna_sorting_wrapper() {
-    echo '<div class="product-sorting">';
+    echo '<div class="product-sorting col-sm-12">';
 }
 
 /**
@@ -171,9 +148,15 @@ add_action( 'woocommerce_before_shop_loop',         'woocommerce_catalog_orderin
 add_action( 'woocommerce_before_shop_loop',         'storefront_woocommerce_pagination',        30 );
 add_action( 'woocommerce_before_shop_loop',         'lacuna_sorting_wrapper_close',         31 );
 
+
 // Remove the product rating display on product loops
 remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
 
+add_action( 'woocommerce_after_shop_loop',        'lacuna_sorting_wrapper',             9 );
+add_action( 'woocommerce_after_shop_loop',        'woocommerce_catalog_ordering',           10 );
+add_action( 'woocommerce_after_shop_loop',        'woocommerce_result_count',               20 );
+add_action( 'woocommerce_after_shop_loop',        'woocommerce_pagination',                 30 );
+add_action( 'woocommerce_after_shop_loop',        'lacuna_sorting_wrapper_close',       31 );
 
 /**
  * Related Products Args
@@ -207,10 +190,11 @@ function storefront_custom_logo() {
 
 function storefront_display_custom_logo() {
 ?>
-    <div class="row">
-        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo-link" rel="home">
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/lacunalogo_noback.svg" alt="<?php echo get_bloginfo( 'name' ); ?>" />
-        </a>
+    <div id="header-logo-search" class="container">
+        <div class="row">
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo-link" rel="home">
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/lacunalogo_noback.svg" alt="<?php echo get_bloginfo( 'name' ); ?>" />
+            </a>
 <?php
 }
 add_action( 'init', 'storefront_custom_product_search');
@@ -272,7 +256,6 @@ function storefront_display_custom_header_cart() {
                 </ul>
             </div>
         </div>
-        <div class="container">
         <?php
         }
     }

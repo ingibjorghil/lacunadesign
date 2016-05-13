@@ -73,8 +73,11 @@
 				font-family: $font__heading;
 				font-size: 1em;
 				color: $color__green;
-				padding: 10px;
+				padding: 7px 10px 6px;
 				box-shadow: none;
+				&:focus {
+					outline-color: $color__green;
+				}
 			}
 			.star-rating {
 				span {
@@ -103,7 +106,4 @@
 			width: 25%;
 		}
 	}
-}
-.storefront-sorting {
-	margin-bottom: 1.618em;
 }
