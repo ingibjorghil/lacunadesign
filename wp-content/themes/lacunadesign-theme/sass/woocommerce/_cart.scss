@@ -1,0 +1,91 @@
+.site-header {
+	.widget_shopping_cart {
+		a.button {
+			background-color: $color__green;
+			&:hover {
+				background-color: $color__dark-green;
+			}
+			&:focus {
+				outline-color: $color__green;
+			}
+		}
+	}
+}
+.site-header-cart {
+	a.cart-contents {
+		padding-left: 15px;
+		padding-right: 15px;
+		&:hover {
+			text-decoration: none;
+		}
+		&:before {
+			content: "";
+			display: block;
+			width: 1px;
+			height: 25%;
+			background-color: rgba(0,0,0,.15);
+			position: absolute;
+			top: 37.5%;
+			left: -3px;
+		}
+		&:after {
+			color: $color__green;
+		}
+	}
+}
+table.cart {
+	td,th {
+		padding: 1em;
+	}
+}
+.wc-proceed-to-checkout {
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+a.checkout-button.button.alt.wc-forward {
+	background-color: $color__green;
+	box-shadow: none;
+	border: 1px solid $color__green;
+	&:hover {
+		background-color: #fff;
+		border: 1px solid $color__green;
+		color: $color__green;
+	}
+}
+a, .button, .button.alt, .button.wc-forward {
+	&:focus {
+		outline-color: $color__green;
+	}
+}
+.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
+width: 100% !important;
+}
+button, input[type="button"], 
+input[type="reset"], input[type="submit"], 
+.button, .added_to_cart, 
+.widget-area .widget a.button, 
+.site-header-cart .widget_shopping_cart a.button {
+	background-color: $color__green;
+	border: 1px solid $color__green;
+	box-shadow: none;
+	color: #fff;
+	&:hover {
+		background-color: #fff;
+		border: 1px solid $color__green;
+		box-shadow: none;
+		color: $color__green;
+	}
+}
+
+.cart-collaterals {
+	.cart_totals {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 424px) {
+	.wc-proceed-to-checkout {
+		width: 100%;
+	}
+}
