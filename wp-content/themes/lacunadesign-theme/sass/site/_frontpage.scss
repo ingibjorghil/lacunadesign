@@ -8,3 +8,53 @@
 		width: 100%;
 	}
 }
+#popular-item {
+	background: url("img/skew_background.jpg") no-repeat 100%;
+}
+.pea_cook_wrapper { 
+	border-radius: 0 !important;
+	padding: 30px 21px !important;
+	border-top: 2px solid $color__green;
+	background-color: #fff !important;
+	&.pea_cook_bottomcenter {
+		left: 0 !important;
+		bottom: 0 !important;
+		margin: 0 !important;
+		width: 100% !important;
+	}
+	p {
+		font-family: inherit !important;
+		font-size: 12px !important;
+
+	}
+}
+button.pea_cook_btn {
+	text-align: center !important;
+	text-shadow: none !important;
+	margin-top: 10px !important;
+	border-radius: 0 !important;
+	background-color: $color__green !important;
+	border: 1px solid $color__green !important;
+	font-family: $font__heading !important;
+	font-size: 1em !important;
+	font-weight: 600 !important;
+	color: #fff !important;
+	padding: 7px 10px 6px !important;
+	box-shadow: none !important;
+	&:focus {
+		outline-color: $color__green !important;
+	}
+	&:hover {
+		text-align: center !important;
+		margin-top: 10px !important;
+		border-radius: 0 !important;
+		background-color: #fff !important;
+		border: 1px solid $color__green !important;
+		font-family: $font__heading !important;
+		font-size: 1em !important;
+		font-weight: 600 !important;
+		color: $color__green !important;
+		padding: 7px 10px 6px !important;
+		box-shadow: none !important;
+	}
+}

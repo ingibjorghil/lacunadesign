@@ -9,11 +9,9 @@
 	<?php get_template_part( 'template-parts/content', 'frontimages' ); ?>
 </section>
 <section id="popular-item">
-	<div class="wrapper-skew">
-		<div class="wrapper-content">
-			<div class="container">
-				<?php get_template_part( 'template-parts/content', 'popularproducts' ); ?>
-			</div>
+	<div class="wrapper-content">
+		<div class="container">
+			<?php get_template_part( 'template-parts/content', 'popularproducts' ); ?>
 		</div>
 	</div>
 </section>

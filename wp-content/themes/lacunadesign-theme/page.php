@@ -11,8 +11,8 @@
  */
 
 get_header(); ?>
-
-	<div id="primary" class="content-area">
+<div class="container">
+	<div id="primary" class="content-page col-md-8">
 		<main id="main" class="site-main" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -36,5 +36,6 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php do_action( 'storefront_sidebar' ); ?>
+</div>
 
 <?php get_footer(); ?>

@@ -48,7 +48,7 @@ if ( 0 === $woocommerce_loop['loop'] % $woocommerce_loop['columns'] ) {
 	$classes[] = 'last';
 }
 ?>
-<div <?php $classes[] = 'col-md-4 col-sm-6'; post_class( $classes ); ?>>
+<div <?php $classes[] = 'col-md-3 col-xs-6'; post_class( $classes ); ?>>
 	<div class="item-wrap">
 
 		<?php

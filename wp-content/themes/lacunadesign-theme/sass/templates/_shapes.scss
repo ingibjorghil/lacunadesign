@@ -28,7 +28,7 @@ $primary-color: #91cfe5;
 }
 
 .wrapper-skew {
-	background: #F2F0F0;
+	background: $color__green;
 	position: relative;
 	margin-top: 70px;
 	margin-bottom: 70px;
@@ -39,7 +39,7 @@ $primary-color: #91cfe5;
 		top: -36px;
 		width: 100%;
 		height: 80px;
-		background: #F2F0F0;
+		background: $color__green;
 		-webkit-transform: skewY(-1.5deg);
 		-moz-transform: skewY(-1.5deg);
 		-ms-transform: skewY(-1.5deg);
@@ -55,7 +55,7 @@ $primary-color: #91cfe5;
 		bottom: -36px;
 		width: 100%;
 		height: 80px;
-		background: #F2F0F0;
+		background: $color__green;
 		-webkit-transform: skewY(-1.5deg);
 		-moz-transform: skewY(-1.5deg);
 		-ms-transform: skewY(-1.5deg);

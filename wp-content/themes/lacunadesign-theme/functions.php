@@ -251,3 +251,86 @@ add_action( 'storefront_custom_header', 'storefront_display_custom_header_cart',
 add_action( 'storefront_custom_header', 'storefront_display_custom_logo',                  40 );
 add_action( 'storefront_custom_header', 'storefront_custom_product_search',                50 );
 add_action( 'storefront_custom_header', 'storefront_primary_navigation',                   60 );
+
+/**
+     * List all (or limited) product categories.
+     *
+     * @param array $atts
+     * @return string
+     */
+    function rand_product_categories( $atts ) {
+        global $woocommerce_loop;
+
+        $atts = shortcode_atts( array(
+            'number'     => null,
+            'orderby'    => 'rand',
+            'order'      => 'rand',
+            'columns'    => '4',
+            'hide_empty' => 1,
+            'parent'     => '',
+            'ids'        => ''
+        ), $atts );
+
+        if ( isset( $atts['ids'] ) ) {
+            $ids = explode( ',', $atts['ids'] );
+            $ids = array_map( 'trim', $ids );
+        } else {
+            $ids = array();
+        }
+
+        $hide_empty = ( $atts['hide_empty'] == true || $atts['hide_empty'] == 1 ) ? 1 : 0;
+
+        // get terms and workaround WP bug with parents/pad counts
+        $args = array(
+            'orderby'    => $atts['orderby'],
+            'order'      => $atts['order'],
+            'hide_empty' => $hide_empty,
+            'include'    => $ids,
+            'pad_counts' => true,
+            'child_of'   => $atts['parent']
+        );
+
+        $rand_product_categories = get_terms( 'product_cat', $args );
+
+        if ( '' !== $atts['parent'] ) {
+            $rand_product_categories = wp_list_filter( $rand_product_categories, array( 'parent' => $atts['parent'] ) );
+        }
+
+        if ( $hide_empty ) {
+            foreach ( $rand_product_categories as $key => $category ) {
+                if ( $category->count == 0 ) {
+                    unset( $rand_product_categories[ $key ] );
+                }
+            }
+        }
+
+        if ( $atts['number'] ) {
+            $rand_product_categories = array_slice( $rand_product_categories, 0, $atts['number'] );
+        }
+
+        $columns = absint( $atts['columns'] );
+        $woocommerce_loop['columns'] = $columns;
+
+        ob_start();
+
+        // Reset loop/columns globals when starting a new loop
+        $woocommerce_loop['loop'] = $woocommerce_loop['column'] = '';
+
+        if ( shuffle($rand_product_categories) ) {
+            woocommerce_product_loop_start();
+
+            foreach ( $rand_product_categories as $category ) {
+                wc_get_template( 'content-product_promo.php', array(
+                    'category' => $category
+                ) );
+            }
+
+            woocommerce_product_loop_end();
+        }
+
+        woocommerce_reset_loop();
+
+        return '<div class="woocommerce columns-' . $columns . '">' . ob_get_clean() . '</div>';
+    }
+    add_shortcode( 'rand_prod_cat', 'rand_product_categories' );
+    ?>

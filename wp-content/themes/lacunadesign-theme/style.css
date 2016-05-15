@@ -286,7 +286,7 @@ big {
   text-align: center; }
 
 .wrapper-skew {
-  background: #F2F0F0;
+  background: #5fd2d2;
   position: relative;
   margin-top: 70px;
   margin-bottom: 70px; }
@@ -297,7 +297,7 @@ big {
     top: -36px;
     width: 100%;
     height: 80px;
-    background: #F2F0F0;
+    background: #5fd2d2;
     -webkit-transform: skewY(-1.5deg);
     -moz-transform: skewY(-1.5deg);
     -ms-transform: skewY(-1.5deg);
@@ -312,7 +312,7 @@ big {
     bottom: -36px;
     width: 100%;
     height: 80px;
-    background: #F2F0F0;
+    background: #5fd2d2;
     -webkit-transform: skewY(-1.5deg);
     -moz-transform: skewY(-1.5deg);
     -ms-transform: skewY(-1.5deg);
@@ -761,8 +761,9 @@ a {
     width: 75%;
     margin: 0; }
     .woocommerce-active .site-header .secondary-navigation ul.menu a {
-      font-size: 22px;
-      padding: 0.96em 0.5em; }
+      padding: 1.7em .6em; }
+    .woocommerce-active .site-header .secondary-navigation ul.menu i {
+      font-size: 20px; }
   .woocommerce-active .site-header .main-navigation {
     width: 100%;
     border-bottom: 1px solid #adadad; }
@@ -863,6 +864,51 @@ a {
   background-color: #5fd2d2;
   padding: 10px;
   width: 100%; }
+
+#popular-item {
+  background: url("img/skew_background.jpg") no-repeat 100%; }
+
+.pea_cook_wrapper {
+  border-radius: 0 !important;
+  padding: 30px 21px !important;
+  border-top: 2px solid #5fd2d2;
+  background-color: #fff !important; }
+  .pea_cook_wrapper.pea_cook_bottomcenter {
+    left: 0 !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    width: 100% !important; }
+  .pea_cook_wrapper p {
+    font-family: inherit !important;
+    font-size: 12px !important; }
+
+button.pea_cook_btn {
+  text-align: center !important;
+  text-shadow: none !important;
+  margin-top: 10px !important;
+  border-radius: 0 !important;
+  background-color: #5fd2d2 !important;
+  border: 1px solid #5fd2d2 !important;
+  font-family: "Orator", sans-serif !important;
+  font-size: 1em !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  padding: 7px 10px 6px !important;
+  box-shadow: none !important; }
+  button.pea_cook_btn:focus {
+    outline-color: #5fd2d2 !important; }
+  button.pea_cook_btn:hover {
+    text-align: center !important;
+    margin-top: 10px !important;
+    border-radius: 0 !important;
+    background-color: #fff !important;
+    border: 1px solid #5fd2d2 !important;
+    font-family: "Orator", sans-serif !important;
+    font-size: 1em !important;
+    font-weight: 600 !important;
+    color: #5fd2d2 !important;
+    padding: 7px 10px 6px !important;
+    box-shadow: none !important; }
 
 /*--------------------------------------------------------------
 ## Designer-Template
@@ -1020,7 +1066,7 @@ object {
   text-align: center; }
 
 .wrapper-skew {
-  background: #F2F0F0;
+  background: #5fd2d2;
   position: relative;
   margin-top: 70px;
   margin-bottom: 70px; }
@@ -1031,7 +1077,7 @@ object {
     top: -36px;
     width: 100%;
     height: 80px;
-    background: #F2F0F0;
+    background: #5fd2d2;
     -webkit-transform: skewY(-1.5deg);
     -moz-transform: skewY(-1.5deg);
     -ms-transform: skewY(-1.5deg);
@@ -1046,7 +1092,7 @@ object {
     bottom: -36px;
     width: 100%;
     height: 80px;
-    background: #F2F0F0;
+    background: #5fd2d2;
     -webkit-transform: skewY(-1.5deg);
     -moz-transform: skewY(-1.5deg);
     -ms-transform: skewY(-1.5deg);
@@ -1208,7 +1254,7 @@ body {
   text-align: center; }
 
 .wrapper-skew {
-  background: #F2F0F0;
+  background: #5fd2d2;
   position: relative;
   margin-top: 70px;
   margin-bottom: 70px; }
@@ -1219,7 +1265,7 @@ body {
     top: -36px;
     width: 100%;
     height: 80px;
-    background: #F2F0F0;
+    background: #5fd2d2;
     -webkit-transform: skewY(-1.5deg);
     -moz-transform: skewY(-1.5deg);
     -ms-transform: skewY(-1.5deg);
@@ -1234,7 +1280,7 @@ body {
     bottom: -36px;
     width: 100%;
     height: 80px;
-    background: #F2F0F0;
+    background: #5fd2d2;
     -webkit-transform: skewY(-1.5deg);
     -moz-transform: skewY(-1.5deg);
     -ms-transform: skewY(-1.5deg);
@@ -1349,9 +1395,6 @@ body {
   -webkit-box-shadow: none;
   box-shadow: none; }
 
-.wrapper-content .products .product {
-  width: 25%; }
-
 /*--------------------------------------------------------------
 ## Single Product
 --------------------------------------------------------------*/
@@ -1429,9 +1472,6 @@ body {
   text-decoration: line-through;
   -webkit-box-shadow: none;
   box-shadow: none; }
-
-.wrapper-content .products .product {
-  width: 25%; }
 
 .single-product div.product {
   padding: 1px; }
