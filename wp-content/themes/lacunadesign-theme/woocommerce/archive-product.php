@@ -41,7 +41,9 @@ get_header(); ?>
 				$twitter_field = get_field('designer-twitter', $post_id);
 				$instagram_field = get_field('designer-instagram', $post_id);
 			 ?>
+			 <?php if( !empty($designerlogo_field) ): ?>
 			 	<img src="<?php echo $designerlogo_field ?>" alt="<?php woocommerce_page_title(); ?> Logo">
+		 	<?php endif ?>
 		 </div>
 	</div>
 	<div class="container">
@@ -52,7 +54,10 @@ get_header(); ?>
 					<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
 				<?php endif; ?>	
 				<?php echo term_description( $term_id, $taxonomy ) ?>
-				<h3>Social media</h3>
+				<?php if( !empty( $facebook_field || $instagram_field || $twitter_field ) ): 
+					echo '<h3>Social media</h3>';
+					endif
+				?>
 				<?php
 					if ($facebook_field)
 					{

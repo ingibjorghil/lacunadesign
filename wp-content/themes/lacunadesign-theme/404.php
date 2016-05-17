@@ -6,7 +6,7 @@
  */
 
 get_header(); ?>
-
+<div class="container">
 	<div id="primary" class="content-area">
 
 		<main id="main" class="site-main" role="main">
@@ -14,33 +14,25 @@ get_header(); ?>
 			<section class="error-404 not-found">
 
 				<div class="page-content">
-
+					
 					<header class="page-header">
-						<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'storefront' ); ?></h1>
+						<h1 class="page-title"><?php esc_html_e( 'Oops! Den side findes ikke.', 'storefront' ); ?></h1>
 					</header><!-- .page-header -->
+					<div class="row">
+						<div class="col-sm-8">
+							<p><?php esc_html_e( 'Intet blev fundet på dette sted. Prøv at søge, eller tjek nedenstående links.', 'storefront' ); ?></p>
 
-					<p><?php esc_html_e( 'Nothing was found at this location. Try searching, or check out the links below.', 'storefront' ); ?></p>
-
-					<?php
-					if ( is_woocommerce_activated() ) {
-						the_widget( 'WC_Widget_Product_Search' );
-					} else {
-						get_search_form();
-					}
-					?>
-
-					<?php
-					if ( is_woocommerce_activated() ) {
-
-						echo '<div class="fourohfour-columns-2">';
-
-							echo '<div class="col-1">';
-
-								storefront_promoted_products();
-
-							echo '</div>';
-
-							echo '<div class="col-2">';
+							<?php
+							if ( is_woocommerce_activated() ) {
+								the_widget( 'WC_Widget_Product_Search' );
+							} else {
+								get_search_form();
+							}
+							?>
+						</div>
+						<?php
+						if ( is_woocommerce_activated() ) {
+							echo '<div class="col-sm-4">';
 
 								echo '<h2>' . esc_html__( 'Product Categories', 'storefront' ) . '</h2>';
 
@@ -57,6 +49,17 @@ get_header(); ?>
 															'per_page' 	=> 4,
 															'columns'	=> 4,
 														) );
+						
+							
+						echo '<div class="row">';
+
+							echo '<div class="col-sm-12">';
+
+								storefront_promoted_products( $per_page = '4');
+
+							echo '</div>';
+
+							
 					}
 					?>
 
@@ -65,5 +68,5 @@ get_header(); ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-
+</div>
 <?php get_footer(); ?>

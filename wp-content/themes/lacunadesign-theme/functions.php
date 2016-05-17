@@ -85,10 +85,6 @@ $link = $product->get_permalink();
 echo do_shortcode('<div class="button-wrap"><a href="'.$link.'" class="button view-product">Se mere</a></div>');
 }
 
-
-// Register Custom Navigation Walker
-require_once('wp_bootstrap_navwalker.php');
-
 if ( ! function_exists( 'storefront_before_content' ) ) {
     function storefront_before_content() {
         ?>
@@ -172,7 +168,7 @@ function storefront_display_custom_logo() {
     <div id="header-logo-search" class="container">
         <div class="row">
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo-link" rel="home">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/lacunalogo_noback.svg" alt="<?php echo get_bloginfo( 'name' ); ?>" />
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/lacuna_logo.svg" alt="<?php echo get_bloginfo( 'name' ); ?>" />
             </a>
 <?php
 }
@@ -333,4 +329,47 @@ add_action( 'storefront_custom_header', 'storefront_primary_navigation',        
         return '<div class="woocommerce columns-' . $columns . '">' . ob_get_clean() . '</div>';
     }
     add_shortcode( 'rand_prod_cat', 'rand_product_categories' );
+
+
+/**
+ * Change the number of related products in the single product page.
+ *
+ * @param  array $args
+ * @return array
+ */
+function wc_custom_related_products_number( $args ) {
+    if ( isset( $args['posts_per_page'] ) ) {
+        $args['posts_per_page'] = 4;
+    }
+
+    return $args;
+}
+add_filter( 'woocommerce_output_related_products_args', 'wc_custom_related_products_number' );
+
+add_filter( 'woocommerce_output_related_products_args', 'wc_custom_related_products_number', 11 );
+
+/**
+ * Changes the redirect URL for the Return To Shop button in the cart.
+ *
+ * @return string
+ */
+function wc_empty_cart_redirect_url() {
+    return  site_url(); ;
+}
+add_filter( 'woocommerce_return_to_shop_redirect', 'wc_empty_cart_redirect_url' );
+
+add_action( 'init', 'custom_remove_footer_credit', 10 );
+
+function custom_remove_footer_credit () {
+    remove_action( 'storefront_footer', 'storefront_credit', 20 );
+    add_action( 'storefront_footer', 'custom_storefront_credit', 20 );
+} 
+
+function custom_storefront_credit() {
     ?>
+    <div class="site-info">
+        &copy; <?php echo get_bloginfo( 'name' ) . ' IVS - ' . get_the_date( 'Y' ); ?>
+    </div><!-- .site-info -->
+    <?php
+}
+

@@ -46,11 +46,7 @@ $woocommerce_loop['columns'] = $columns;
 if ( $products->have_posts() ) : ?>
 
 	<div class="related products">
-		<div class="related-header">
-			<div class="related-header-wrap">
-				<h2><?php _e( 'Related Products', 'woocommerce' ); ?></h2>
-			</div>
-		</div>
+		<h1>Relaterede produkter</h1>
 
 		<?php woocommerce_product_loop_start(); ?>
 

@@ -13,8 +13,7 @@
 }
 .site-header-cart {
 	a.cart-contents {
-		padding-left: 15px;
-		padding-right: 15px;
+		padding: 10px 15px;
 		&:hover {
 			text-decoration: none;
 		}
@@ -30,6 +29,9 @@
 		}
 		&:after {
 			color: $color__green;
+		}
+		.amount {
+			font-size: 12px;
 		}
 	}
 }

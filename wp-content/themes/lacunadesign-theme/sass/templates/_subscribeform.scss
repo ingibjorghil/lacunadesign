@@ -15,11 +15,13 @@
 		box-shadow: none;
 		border-radius: 0;
 		margin: 30px auto;
-		border: 1px solid #91cfe5;
-		background-color: #fff;
+		border: 1px solid $color__green;
+		background-color: $color__green;
+		color: #fff;
 		
 		&:hover{
-			border: 1px solid #3c9bb5;
+			color: $color__green;
+			background-color: #fff;
 		}
 	}
 	.mc-field-group{

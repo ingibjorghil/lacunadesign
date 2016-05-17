@@ -72,4 +72,4 @@ $woocommerce_loop['loop']++;
 
 	?>
 </div>
-<h1>Test</h1>
+

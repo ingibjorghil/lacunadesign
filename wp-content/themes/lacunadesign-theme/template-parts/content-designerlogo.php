@@ -22,7 +22,6 @@
 					$thumb_src = $src[0];
 			}
 			?>	
-
 				<div class="kunder-img col-sm-2">
 					<?php if ( $thumb_src ): ?>
 					<img src="<?php echo $thumb_src; ?>" alt="<?php the_title(); ?>">

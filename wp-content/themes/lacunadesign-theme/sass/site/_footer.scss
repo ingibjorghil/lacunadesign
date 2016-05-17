@@ -1,0 +1,20 @@
+.widget_nav_menu {
+	ul {
+		li {
+			&:before {
+				content: "";
+				margin-right: 0;
+			}
+		}
+	}
+}
+.widget_pages {
+	ul {
+		li {
+			&:before {
+				content: "";
+				margin-right: 0;
+			}
+		}
+	}
+}
