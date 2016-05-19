@@ -17,7 +17,9 @@
 	//echo $name[$rand_designer];
 ?>
 <div class="row">
-	<h1>En af vores designere</h1>
+	<div class="col-sm-12">
+		<h1>En af vores designere</h1>
+	</div>
 </div>
 <div class="row">
 	<div class="col-sm-3">

@@ -36,7 +36,6 @@
 			 * @hooked storefront_header_cart - 60
 			 */
 			do_action( 'storefront_custom_header' ); ?>
-
 		</div>
 	</header><!-- #masthead -->
 

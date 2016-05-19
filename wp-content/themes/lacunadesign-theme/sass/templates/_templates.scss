@@ -52,10 +52,7 @@ html, body {
 		font-size: 16px;
 	}
 }
-.site-logo{
-	width: 120px;
-	height: 50px;
-}
+
 .site-branding{
 	height: auto;
 	img {
@@ -70,37 +67,6 @@ body{
 	background-attachment: fixed;
 	position: relative;
 	overflow-x: hidden;
-}
-.footer-wrap {
-	position: absolute;
-	margin-top: 20px;
-	padding: 20px 0;
-	height:100%;
-	bottom: 0;
-	.site-footer{
-		bottom: 0;
-		width: 100%;
-		height: auto;
-		left: 0;
-		position: absolute;
-		text-align: center;
-		padding-bottom: 10px;
-		p{
-			display: inline-block;
-			margin: 0 0 0 30px;
-			color: $primary-color;
-		}
-		a{
-			color: $primary-color;
-			&:hover{	
-				color: $primary-color;
-			}
-			&:visited{
-				color: $primary-color;
-			}
-		}
-
-	}
 }
 .modal-content{
 	border-radius: 0;
@@ -137,9 +103,6 @@ body{
 		.text{ 
 			font-size: 14px;
 		}
-	}
-	.site-footer{
-		text-align: center;
 	}
 }
 .no-padding{

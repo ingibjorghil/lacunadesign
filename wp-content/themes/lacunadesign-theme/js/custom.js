@@ -1,39 +1,128 @@
-var deadline = 'May 26 2016 12:00:00 GMT+01:00';
-function getTimeRemaining(endtime){
-  var t = Date.parse(endtime) - Date.parse(new Date());
-  var seconds = Math.floor( (t/1000) % 60 );
-  var minutes = Math.floor( (t/1000/60) % 60 );
-  var hours = Math.floor( (t/(1000*60*60)) % 24 );
-  var days = Math.floor( t/(1000*60*60*24) );
-  return {
-    'total': t,
-    'days': days,
-    'hours': hours,
-    'minutes': minutes,
-    'seconds': seconds
+/**
+ * cbpAnimatedHeader.js v1.0.0
+ * http://www.codrops.com
+ *
+ * Licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ * 
+ * Copyright 2013, Codrops
+ * http://www.codrops.com
+ */
+var cbpAnimatedHeader = (function() {
+
+  var docElem = document.documentElement,
+    header = document.querySelector( '.header-logo' ),
+    didScroll = false,
+    changeHeaderOn = 150;
+
+  function init() {
+    window.addEventListener( 'scroll', function( event ) {
+      if( !didScroll ) {
+        didScroll = true;
+        setTimeout( scrollPage, 250 );
+      }
+    }, false );
+  }
+
+  function scrollPage() {
+    var sy = scrollY();
+    if ( sy >= changeHeaderOn ) {
+      classie.add( header, 'header-shrink' );
+    }
+    else {
+      classie.remove( header, 'header-shrink' );
+    }
+    didScroll = false;
+  }
+
+  function scrollY() {
+    return window.pageYOffset || docElem.scrollTop;
+  }
+
+  init();
+
+})();
+
+
+
+/*!
+ * classie - class helper functions
+ * from bonzo https://github.com/ded/bonzo
+ * 
+ * classie.has( elem, 'my-class' ) -> true/false
+ * classie.add( elem, 'my-new-class' )
+ * classie.remove( elem, 'my-unwanted-class' )
+ * classie.toggle( elem, 'my-class' )
+ */
+
+/*jshint browser: true, strict: true, undef: true */
+/*global define: false */
+
+( function( window ) {
+
+'use strict';
+
+// class helper functions from bonzo https://github.com/ded/bonzo
+
+function classReg( className ) {
+  return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+}
+
+// classList support for class management
+// altho to be fair, the api sucks because it won't accept multiple classes at once
+var hasClass, addClass, removeClass;
+
+if ( 'classList' in document.documentElement ) {
+  hasClass = function( elem, c ) {
+    return elem.classList.contains( c );
+  };
+  addClass = function( elem, c ) {
+    elem.classList.add( c );
+  };
+  removeClass = function( elem, c ) {
+    elem.classList.remove( c );
+  };
+}
+else {
+  hasClass = function( elem, c ) {
+    return classReg( c ).test( elem.className );
+  };
+  addClass = function( elem, c ) {
+    if ( !hasClass( elem, c ) ) {
+      elem.className = elem.className + ' ' + c;
+    }
+  };
+  removeClass = function( elem, c ) {
+    elem.className = elem.className.replace( classReg( c ), ' ' );
   };
 }
 
-function initializeClock(id, endtime){
-  var clock = document.getElementById(id);
-  function updateClock(){
-  var t = getTimeRemaining(endtime);
-  	daysSpan.innerHTML = t.days;
-    hoursSpan.innerHTML = t.hours;
-    minutesSpan.innerHTML = t.minutes;
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-  if(t.total<=0){
-    clearInterval(timeinterval);
-  }
+function toggleClass( elem, c ) {
+  var fn = hasClass( elem, c ) ? removeClass : addClass;
+  fn( elem, c );
 }
 
-var daysSpan = clock.querySelector('.days');
-var hoursSpan = clock.querySelector('.hours');
-var minutesSpan = clock.querySelector('.minutes');
-var secondsSpan = clock.querySelector('.seconds');
+var classie = {
+  // full names
+  hasClass: hasClass,
+  addClass: addClass,
+  removeClass: removeClass,
+  toggleClass: toggleClass,
+  // short names
+  has: hasClass,
+  add: addClass,
+  remove: removeClass,
+  toggle: toggleClass
+};
 
-updateClock(); // run function once at first to avoid delay
-var timeinterval = setInterval(updateClock,1000);
+// transport
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  define( classie );
+} else {
+  // browser global
+  window.classie = classie;
 }
-initializeClock('clockdiv', deadline);
+
+})( window );
 

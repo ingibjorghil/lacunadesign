@@ -23,11 +23,11 @@ function lacunadesign_scripts() {
     
     wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . '/sass/bootstrap.css', array(), '3.3.6', 'all' );
     wp_enqueue_style( 'font-awesome', get_stylesheet_directory_uri() . '/fonts/font-awesome/css/font-awesome.min.css', '4.5.0', 'all' );
-    wp_enqueue_style( 'lacunadesign-style', get_stylesheet_uri() );
-    
-    wp_enqueue_script( 'lacunadesign-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+ 
+    wp_enqueue_script( 'lacunadesign-skip-link-focus-fix', get_stylesheet_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
     
     wp_enqueue_script( 'bootstrap-js', get_stylesheet_directory_uri() . '/js/bootstrap.js', array(), '3.3.6', true );
+    wp_enqueue_script( 'lacunadesign-custom-js', get_stylesheet_directory_uri() . '/js/custom.js', array(), '1.0.0', true );
 
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
         wp_enqueue_script( 'comment-reply' );
@@ -38,6 +38,7 @@ add_action( 'wp_enqueue_scripts', 'lacunadesign_scripts' );
 /**
  * Note: DO NOT! alter or remove the code above this text and only add your custom PHP functions below this text.
  */
+
 
 function designerlogo_post_type() {
    
@@ -134,6 +135,11 @@ add_action( 'woocommerce_after_shop_loop',        'woocommerce_pagination',     
 add_action( 'woocommerce_after_shop_loop',        'lacuna_sorting_wrapper_close',       31 );
 
 /**
+    Replace product sharing
+*/
+
+
+/**
  * Related Products Args
  * @param  array $args related products args
  * @since 1.0.0
@@ -165,11 +171,12 @@ function storefront_custom_logo() {
 
 function storefront_display_custom_logo() {
 ?>
-    <div id="header-logo-search" class="container">
-        <div class="row">
-            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo-link" rel="home">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/lacuna_logo.svg" alt="<?php echo get_bloginfo( 'name' ); ?>" />
-            </a>
+    <div class="header-container">
+        <div id="header-logo-search" class="container">  
+            <div class="row">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo-link" rel="home">
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/lacuna_logo.svg" alt="<?php echo get_bloginfo( 'name' ); ?>" />
+                </a>
 <?php
 }
 add_action( 'init', 'storefront_custom_product_search');
@@ -179,13 +186,15 @@ function Storefront_custom_product_search() {
 }
     function storefront_display_custom_product_search() {
         if ( is_woocommerce_activated() ) { ?>
-            <div class="site-search">
-                <?php the_widget( 'WC_Widget_Product_Search', 'title=' ); ?>
-            </div>
+                    <div class="site-search">
+                        <?php the_widget( 'WC_Widget_Product_Search', 'title=' ); ?>
+                    </div>
+                </div>
             </div>
         <?php
         }
     }
+
 
 add_action( 'init', 'storefront_custom_secondary_navigation' );
 function storefront_custom_secondary_navigation(){
@@ -196,6 +205,11 @@ function storefront_display_custom_secondary_navigation() {
         ?>
         <div class="header-cart-wrap">
             <div class="container">
+                <div class="header-logo">
+                   <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="header-logo-link" rel="home">
+                        <img class="lacuna-top-logo" src="<?php echo get_stylesheet_directory_uri(); ?>/img/lacuna_logo.svg" alt="<?php echo get_bloginfo( 'name' ); ?>" />
+                    </a>
+                </div>
                 <nav class="secondary-navigation" role="navigation" aria-label="<?php esc_html_e( 'Secondary Navigation', 'storefront' ); ?>">
                     <?php
                         wp_nav_menu(
@@ -372,4 +386,17 @@ function custom_storefront_credit() {
     </div><!-- .site-info -->
     <?php
 }
+
+if ( ! function_exists( 'storefront_cart_link' ) ) {
+
+    function storefront_cart_link() {
+        ?>
+            <a class="cart-contents" href="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'storefront' ); ?>">
+                <span class="amount"><?php echo wp_kses_data( WC()->cart->get_cart_subtotal() ); ?></span> <span class="count"><?php echo wp_kses_data( sprintf( _n( '%d', WC()->cart->get_cart_contents_count(), 'storefront' ), WC()->cart->get_cart_contents_count() ) );?></span>
+            </a>
+        <?php
+    }
+}
+
+
 
