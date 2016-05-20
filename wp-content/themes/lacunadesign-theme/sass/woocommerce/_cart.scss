@@ -3,7 +3,7 @@
 		a.button {
 			background-color: $color__green;
 			&:hover {
-				background-color: $color__dark-green;
+				background-color: $color__sec_dark-green;
 			}
 			&:focus {
 				outline-color: $color__green;
@@ -60,9 +60,8 @@ table.cart {
 	}
 }
 .wc-proceed-to-checkout {
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
+	width: 30%;
+	float: right;
 }
 a.checkout-button.button.alt.wc-forward {
 	background-color: $color__green;
@@ -108,5 +107,23 @@ input[type="reset"], input[type="submit"],
 @media screen and (max-width: 424px) {
 	.wc-proceed-to-checkout {
 		width: 100%;
+	}
+}
+
+.woocommerce-checkout-payment {
+	.payment_method_paypal {
+		a.about_paypal {
+			float: right;
+			margin-right: .5em;
+			color: $color__green;
+			&:before {
+				content: "\e900";
+				font-family: lacunafont;
+			}
+			&:after {
+				content: "\e901";
+				font-family: lacunafont;
+			}
+		}
 	}
 }

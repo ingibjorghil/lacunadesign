@@ -20,3 +20,59 @@ input[type="submit"].alt, .button.alt {
 .star-rating span:before, .quantity .plus, .quantity .minus, p.stars a:hover:after, p.stars a:after, .star-rating span:before, #payment .payment_methods li input[type=radio]:first-child:checked+label:before {
 	color: $color__green;
 }
+#ship-to-different-address {
+	background-color: $color__light-grey;
+	position: relative;
+	font-size: 1.3em;
+	label.checkbox {
+		display: block;
+		cursor: pointer;
+		padding: 1.387em;
+		&:before {
+			display: inline-block;
+			font: normal normal normal 1em/1 FontAwesome;
+			font-size: inherit;
+			text-rendering: auto;
+			content: "\f096";
+			margin-right: .53em;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			transition: color,ease,.2s;
+			-webkit-transition: color,ease,.2s;
+			-moz-transition: color,ease,.2s;
+		}
+	}
+	input[type=checkbox].input-checkbox {
+		position: absolute !important;
+		clip: rect(1px,1px,1px,1px);
+		top: 0;
+		left: 0;
+			
+	}
+	input[type=checkbox]:checked ~ label.checkbox:before {
+		color: $color__green;
+		content: "\f046";
+	}
+}
+table.cart {
+	td.actions {
+		input {
+			&[type=submit] {
+				vertical-align: top;
+				line-height: 1.7;
+			}
+		}
+		.coupon {
+			position: relative;
+			input {
+				&[type=text] {
+					padding: 0 1em;
+					margin: 0 1em 0 0 !important;
+				}
+			}
+		}
+	}
+}
+
+
+

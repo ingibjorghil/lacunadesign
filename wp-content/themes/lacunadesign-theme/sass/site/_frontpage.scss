@@ -33,6 +33,11 @@
 }
 #designer-promo {
 	padding-top: 30px;
+	h2 {
+		a {
+			color: $color__green;
+		}
+	}
 }
 #popular-item {
 	background: url("img/skew_background.jpg") no-repeat 100%;

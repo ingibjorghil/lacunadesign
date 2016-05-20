@@ -1,8 +1,0 @@
-li.wc-taxamo-setting-check span {
-	text-decoration: line-through;
-	color: #666;
-}
-li.wc-taxamo-setting-check:after {
-	content:  "\2713 ";
-	color: #0c0;
-}

@@ -5,3 +5,28 @@
 		}
 	}
 }
+p {
+	.myaccount_user {
+		a {
+			color: $color__sec_red;	
+			&:last-child {
+				color: $color__green;
+			}
+		}
+	}
+}
+.login {
+	.form-row {
+		label {
+			margin-top: 1em;
+			input {
+				margin-right: .5em;
+			}
+		}
+	}
+	p.lost_password {
+		a {
+			color: $color__sec_red;
+		}
+	}
+}

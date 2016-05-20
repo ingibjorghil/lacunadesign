@@ -259,3 +259,72 @@ input[type="submit"] {
 	background-color: $color__green;
 	border-radius: 0;
 }
+
+.woocommerce-info {
+	background-color: $color__green;
+	color: $color__text-main;
+} 
+
+.woocommerce-noreviews {
+	@extend .woocommerce-info;
+} 
+
+p.no-comments {
+	@extend .woocommerce-info
+}
+
+div.sharedaddy {
+	h3.sd-title {
+		margin: 1em 0 .5em !important;
+		font-weight: 500 !important;
+		font-size: 1.2em !important;
+		color: $color__dark-grey !important;
+		display: block !important;
+		&:before {
+			margin-bottom: .5em !important;
+			border-top: 1px solid rgba(0,0,0,.05) !important;
+		}
+	}
+}
+
+#content {
+	div.sharedaddy  {
+
+	}
+}
+
+#main {
+	div.sharedaddy {
+
+	}
+}
+.stock {
+	&.in-stock {
+		color: $color__green; 
+		font-weight: 600;
+		&:before {
+			font-family: lacunafont;
+			content: "\e900";
+			font-weight: 600;
+		}
+		&:after {
+			font-family: lacunafont;
+			content: "\e901";
+			margin-left: .53em;
+		}
+	}
+	&.out-of-stock {
+		color: $color__sec_red; 
+		font-weight: 600;
+		&:before {
+			font-family: lacunafont;
+			content: "\e900";
+			font-weight: 600;
+		}
+		&:after {
+			font-family: lacunafont;
+			content: "\e901";
+			margin-left: .53em;
+		}
+	}
+}
