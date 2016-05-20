@@ -13,8 +13,8 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+	<div id="primary" class="content container">
+		<main id="main" class="site-main col-md-9" role="main">
 
 		<?php if ( have_posts() ) : ?>
 
@@ -27,7 +27,8 @@ get_header(); ?>
 		<?php endif; ?>
 
 		</main><!-- #main -->
+		<?php do_action( 'storefront_sidebar' ); ?>
 	</div><!-- #primary -->
 
-<?php do_action( 'storefront_sidebar' ); ?>
+
 <?php get_footer(); ?>

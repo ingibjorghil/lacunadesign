@@ -18,3 +18,26 @@
 		}
 	}
 }
+
+.site-footer {
+	.storefront-handheld-footer-bar {
+		a {
+			&:not(.button) {
+				color: $color__green;
+			}
+		}
+	}
+}
+.storefront-handheld-footer-bar {
+	ul {
+		li {
+			&.cart {
+				&>a {
+					&:before {
+						content: "\f290";
+					}
+				}
+			}
+		}
+	}
+}

@@ -10,6 +10,9 @@
 	.front-images-content {
 		height: 300px;
 		position: relative;
+		@media #{$screen-sm} {
+			height: 600px;
+		}
 		.front-content {
 			position: absolute;
 			top: 50%;
@@ -25,6 +28,10 @@
 			p {
 				width: 60%;
 				margin: 0 auto;
+				@media #{$screen-sm} {
+					width: 100%;
+					text-align: left;
+				}
 			}
 			
 		}

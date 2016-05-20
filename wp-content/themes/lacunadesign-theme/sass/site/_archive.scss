@@ -1,0 +1,38 @@
+.hentry {
+	.entry-header {
+		padding-bottom: 1em;
+		margin-bottom: 1em;
+		h1 {
+			margin-bottom: .2em;
+		}
+		
+		.posted-on {
+			
+		}
+	}
+	&.type-post {
+		.entry-content	{
+			width: 100%;
+			.more-link {
+				@include lacuna-button(#fff, $color__green);
+				margin-top: 1em;
+				display: inline-block;
+			}
+			p {
+				margin-bottom: 0;
+			}
+			img {
+				max-width: 70%;
+			}
+		}
+	}
+	.cat-links {
+		.label {
+			color: $color__green;
+		}
+		display: inline-block;
+		margin-bottom: 0;
+	}
+	box-shadow: 0 0 2px rgba(173,173,173,.7);
+	padding: 1.5em;
+}

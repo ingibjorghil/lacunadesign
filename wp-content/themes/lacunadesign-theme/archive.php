@@ -9,8 +9,8 @@
  */
 
 get_header(); ?>
-
-	<section id="primary" class="content-area">
+<div class="container">
+	<section id="primary" class="content-archive col-md-9">
 		<main id="main" class="site-main" role="main">
 
 		<?php if ( have_posts() ) : ?>
@@ -35,4 +35,6 @@ get_header(); ?>
 	</section><!-- #primary -->
 
 <?php do_action( 'storefront_sidebar' ); ?>
+</div>
+
 <?php get_footer(); ?>

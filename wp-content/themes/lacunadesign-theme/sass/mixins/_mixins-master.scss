@@ -23,3 +23,22 @@
 	clear: both;
 }
 
+// Border Button mixin
+@mixin lacuna-button($color-back, $color-font, $font-size: inherit) {
+	text-align: center;
+	border-radius: 0;
+	background-color: $color-back;
+	border: 1px solid $color-font;
+	font-family: $font__heading;
+	font-size: $font-size;
+	color: $color-font;
+	padding: 7px 10px 3px;
+	box-shadow: none;
+	&:focus {
+		outline-color: $color-font;
+	}
+	&:hover {
+		background-color: $color-font;
+		color: $color-back;
+	}
+}

@@ -52,6 +52,7 @@
 			button.menu-toggle {
 				box-shadow: none;
 				border: 2px solid $color__green;
+				margin-right: 1em;
 				span {
 					&:before {
 						background-color: $color__green;
@@ -154,6 +155,11 @@ li.mini_cart_item {
 	-webkit-transition-timing-function: ease-in-out;
 	-moz-transition-timing-function: ease-in-out;
 	transition-timing-function: ease-in-out;
+	@media #{$screen-sm} {
+  			background-color: #fff;
+  			left: 0;
+  			width: 100%;
+  		}
 	a img {
   		float:left;
   		height:0;
@@ -164,6 +170,9 @@ li.mini_cart_item {
   		-webkit-transition-timing-function: ease-in-out;
 		-moz-transition-timing-function: ease-in-out;
 		transition-timing-function: ease-in-out;
+		@media #{$screen-sm} {
+			margin-left: 1em;
+		}
 	}
 	.header-shrink {
 		height: 100px;
