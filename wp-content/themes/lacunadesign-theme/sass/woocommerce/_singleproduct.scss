@@ -26,28 +26,29 @@
 				span.amount {
 					font-size: 20px;
 					color: $color__dark-grey;
+
 				}
 				ins {
 					display: block;
+					span.amount {
+						&:first-child {
+							color: $color__sec_red;
+						}
+					}
 				}
 			}
 			button.alt, .button.alt {
-				text-align: center;
+				@include lacuna-button(#fff, $color__green, .9em);
 				margin-top: 10px;
-				border-radius: 0;
-				background-color: #fff;
-				border: 1px solid $color__green;
-				font-family: $font__heading;
-				font-size: 0.9em;
-				color: $color__green;
 				padding: 10px;
-				box-shadow: none;
-				&:hover {
-					background-color: $color__green;
-					color: #fff;
-				}
-				&:focus {
-					outline-color: $color__green;
+			}
+			.single_variation {
+				.price {
+					ins {
+						span.amount {
+							color: $color__sec_red;
+						}
+					}
 				}
 			}
 		}
@@ -102,6 +103,7 @@
 						box-shadow: 0 0 2px rgba(173,173,173,.7);
 						padding: 5px 5px 15px 5px;
 						max-width: 300px;
+						min-height: 335px;
 						margin-left: auto;
 						margin-right: auto;
 						position: relative;
@@ -166,25 +168,18 @@
 						margin-bottom: 0;
 					}
 					a.button {
-						text-align: center;
+						@include lacuna-button(#fff, $color__green, 1em);
 						margin-top: 10px;
-						border-radius: 0;
-						background-color: #fff;
-						border: 1px solid $color__green;
-						font-family: $font__heading;
-						font-size: 1em;
-						color: $color__green;
-						padding: 7px 10px 6px;
-						box-shadow: none;
-						&:focus {
-							outline-color: $color__green;
-						}
+						position: absolute;
+						bottom: 5%;
+						left: 50%;
+						transform: translate(-50%, 0);
 					}
 					.star-rating {
 						span {
-						&:before {
-							color: $color__green;
-						}
+							&:before {
+								color: $color__green;
+							}
 						}
 					}	
 				}
@@ -198,8 +193,10 @@
 						box-shadow: none;
 					}	
 				}
-
+				h1 {
+					margin-top: 0;
 				}
+			}
 				
 				
 				

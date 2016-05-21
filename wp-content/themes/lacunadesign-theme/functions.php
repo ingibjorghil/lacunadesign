@@ -71,13 +71,27 @@ function designerlogo_post_type() {
 
 add_action( 'init', 'designerlogo_post_type', 0 );
 
+// Product Social Sidebar
+
+add_action( 'widgets_init', 'lacuna_product_widget' );
+function lacuna_product_widget() {
+    register_sidebar( array(
+        'name' => __( 'Product Sidebar', 'lacundesign' ),
+        'id' => 'sidebar-product',
+        'description' => __( 'Widgets in this area will be shown on all posts and pages.', 'lacunadesign' ),
+        'before_widget' => '<li id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</li>',
+    'before_title'  => '<h3 class="product-widget">',
+    'after_title'   => '</h3>',
+    ) );
+}
+
 
 function remove_loop_button(){
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 }
 add_action('init','remove_loop_button');
 
-/*STEP 2 -ADD NEW BUTTON THAT LINKS TO PRODUCT PAGE FOR EACH PRODUCT */
 
 add_action('woocommerce_after_shop_loop_item','replace_add_to_cart');
 function replace_add_to_cart() {
@@ -96,8 +110,6 @@ if ( ! function_exists( 'storefront_before_content' ) ) {
 }
 /**
  * Sorting wrapper
- * @since   1.4.3
- * @return  void
  */
 function lacuna_sorting_wrapper() {
     echo '<div class="product-sorting col-sm-12">';
@@ -105,8 +117,6 @@ function lacuna_sorting_wrapper() {
 
 /**
  * Sorting wrapper close
- * @since   1.4.3
- * @return  void
  */
 function lacuna_sorting_wrapper_close() {
     echo '</div>';
@@ -141,9 +151,6 @@ add_action( 'woocommerce_after_shop_loop',        'lacuna_sorting_wrapper_close'
 
 /**
  * Related Products Args
- * @param  array $args related products args
- * @since 1.0.0
- * @return  array $args related products args
  */
 function storefront_related_products_args( $args ) {
     $args = apply_filters( 'storefront_related_products_args', array(
@@ -194,7 +201,6 @@ function Storefront_custom_product_search() {
         <?php
         }
     }
-
 
 add_action( 'init', 'storefront_custom_secondary_navigation' );
 function storefront_custom_secondary_navigation(){
@@ -263,93 +269,87 @@ add_action( 'storefront_custom_header', 'storefront_custom_product_search',     
 add_action( 'storefront_custom_header', 'storefront_primary_navigation',                   60 );
 
 /**
-     * List all (or limited) product categories.
-     *
-     * @param array $atts
-     * @return string
-     */
-    function rand_product_categories( $atts ) {
-        global $woocommerce_loop;
+ * List all (or limited) product categories.
+ */
+function rand_product_categories( $atts ) {
+    global $woocommerce_loop;
 
-        $atts = shortcode_atts( array(
-            'number'     => null,
-            'orderby'    => 'rand',
-            'order'      => 'rand',
-            'columns'    => '4',
-            'hide_empty' => 1,
-            'parent'     => '',
-            'ids'        => ''
-        ), $atts );
+    $atts = shortcode_atts( array(
+        'number'     => null,
+        'orderby'    => 'rand',
+        'order'      => 'rand',
+        'columns'    => '4',
+        'hide_empty' => 1,
+        'parent'     => '',
+        'ids'        => ''
+    ), $atts );
 
-        if ( isset( $atts['ids'] ) ) {
-            $ids = explode( ',', $atts['ids'] );
-            $ids = array_map( 'trim', $ids );
-        } else {
-            $ids = array();
-        }
-
-        $hide_empty = ( $atts['hide_empty'] == true || $atts['hide_empty'] == 1 ) ? 1 : 0;
-
-        // get terms and workaround WP bug with parents/pad counts
-        $args = array(
-            'orderby'    => $atts['orderby'],
-            'order'      => $atts['order'],
-            'hide_empty' => $hide_empty,
-            'include'    => $ids,
-            'pad_counts' => true,
-            'child_of'   => $atts['parent']
-        );
-
-        $rand_product_categories = get_terms( 'product_cat', $args );
-
-        if ( '' !== $atts['parent'] ) {
-            $rand_product_categories = wp_list_filter( $rand_product_categories, array( 'parent' => $atts['parent'] ) );
-        }
-
-        if ( $hide_empty ) {
-            foreach ( $rand_product_categories as $key => $category ) {
-                if ( $category->count == 0 ) {
-                    unset( $rand_product_categories[ $key ] );
-                }
-            }
-        }
-
-        if ( $atts['number'] ) {
-            $rand_product_categories = array_slice( $rand_product_categories, 0, $atts['number'] );
-        }
-
-        $columns = absint( $atts['columns'] );
-        $woocommerce_loop['columns'] = $columns;
-
-        ob_start();
-
-        // Reset loop/columns globals when starting a new loop
-        $woocommerce_loop['loop'] = $woocommerce_loop['column'] = '';
-
-        if ( shuffle($rand_product_categories) ) {
-            woocommerce_product_loop_start();
-
-            foreach ( $rand_product_categories as $category ) {
-                wc_get_template( 'content-product_promo.php', array(
-                    'category' => $category
-                ) );
-            }
-
-            woocommerce_product_loop_end();
-        }
-
-        woocommerce_reset_loop();
-
-        return '<div class="woocommerce columns-' . $columns . '">' . ob_get_clean() . '</div>';
+    if ( isset( $atts['ids'] ) ) {
+        $ids = explode( ',', $atts['ids'] );
+        $ids = array_map( 'trim', $ids );
+    } else {
+        $ids = array();
     }
-    add_shortcode( 'rand_prod_cat', 'rand_product_categories' );
+
+    $hide_empty = ( $atts['hide_empty'] == true || $atts['hide_empty'] == 1 ) ? 1 : 0;
+
+    // get terms and workaround WP bug with parents/pad counts
+    $args = array(
+        'orderby'    => $atts['orderby'],
+        'order'      => $atts['order'],
+        'hide_empty' => $hide_empty,
+        'include'    => $ids,
+        'pad_counts' => true,
+        'child_of'   => $atts['parent']
+    );
+
+    $rand_product_categories = get_terms( 'product_cat', $args );
+
+    if ( '' !== $atts['parent'] ) {
+        $rand_product_categories = wp_list_filter( $rand_product_categories, array( 'parent' => $atts['parent'] ) );
+    }
+
+    if ( $hide_empty ) {
+        foreach ( $rand_product_categories as $key => $category ) {
+            if ( $category->count == 0 ) {
+                unset( $rand_product_categories[ $key ] );
+            }
+        }
+    }
+
+    if ( $atts['number'] ) {
+        $rand_product_categories = array_slice( $rand_product_categories, 0, $atts['number'] );
+    }
+
+    $columns = absint( $atts['columns'] );
+    $woocommerce_loop['columns'] = $columns;
+
+    ob_start();
+
+    // Reset loop/columns globals when starting a new loop
+    $woocommerce_loop['loop'] = $woocommerce_loop['column'] = '';
+
+    if ( shuffle($rand_product_categories) ) {
+        woocommerce_product_loop_start();
+
+        foreach ( $rand_product_categories as $category ) {
+            wc_get_template( 'content-product_promo.php', array(
+                'category' => $category
+            ) );
+        }
+
+        woocommerce_product_loop_end();
+    }
+
+    woocommerce_reset_loop();
+
+    return '<div class="woocommerce columns-' . $columns . '">' . ob_get_clean() . '</div>';
+}
+add_shortcode( 'rand_prod_cat', 'rand_product_categories' );
 
 
 /**
  * Change the number of related products in the single product page.
- *
- * @param  array $args
- * @return array
  */
 function wc_custom_related_products_number( $args ) {
     if ( isset( $args['posts_per_page'] ) ) {
@@ -364,8 +364,6 @@ add_filter( 'woocommerce_output_related_products_args', 'wc_custom_related_produ
 
 /**
  * Changes the redirect URL for the Return To Shop button in the cart.
- *
- * @return string
  */
 function wc_empty_cart_redirect_url() {
     return  site_url(); ;
@@ -398,7 +396,9 @@ if ( ! function_exists( 'storefront_cart_link' ) ) {
     }
 }
 
-// Post functions
+/**
+* Post functions
+*/
 
 if ( ! function_exists( 'lacuna_post_header' ) ) {
     function lacuna_post_header() {
@@ -460,68 +460,65 @@ if ( ! function_exists( 'lacuna_post_content' ) ) {
 }
 
 if ( ! function_exists( 'lacuna_post_meta' ) ) {
-    /**
-     * Display the post meta
-     *
-     * @since 1.0.0
-     */
-    function lacuna_post_meta() {
-        ?>
-        <aside class="entry-meta">
-            <?php if ( 'post' == get_post_type() ) : // Hide category and tag text for pages on Search.
+/**
+ * Display the post meta
+ */
+function lacuna_post_meta() {
+    ?>
+    <aside class="entry-meta">
+        <?php if ( 'post' == get_post_type() ) : // Hide category and tag text for pages on Search.
 
+        ?>
+        <div class="author">
+            <?php
+                echo get_avatar( get_the_author_meta( 'ID' ), 128 );
+                echo '<div class="label">' . esc_attr( __( 'Written by', 'storefront' ) ) . '</div>';
+                the_author_posts_link();
             ?>
-            <div class="author">
+        </div>
+        <?php
+        /* translators: used between list items, there is a space after the comma */
+        $categories_list = get_the_category_list( __( ', ', 'storefront' ) );
+
+        if ( $categories_list ) : ?>
+            <div class="cat-links">
                 <?php
-                    echo get_avatar( get_the_author_meta( 'ID' ), 128 );
-                    echo '<div class="label">' . esc_attr( __( 'Written by', 'storefront' ) ) . '</div>';
-                    the_author_posts_link();
+                echo '<div class="label">' . esc_attr( __( 'Posted in', 'storefront' ) ) . '</div>';
+                echo wp_kses_post( $categories_list );
                 ?>
             </div>
-            <?php
-            /* translators: used between list items, there is a space after the comma */
-            $categories_list = get_the_category_list( __( ', ', 'storefront' ) );
+        <?php endif; // End if categories. ?>
 
-            if ( $categories_list ) : ?>
-                <div class="cat-links">
-                    <?php
-                    echo '<div class="label">' . esc_attr( __( 'Posted in', 'storefront' ) ) . '</div>';
-                    echo wp_kses_post( $categories_list );
-                    ?>
-                </div>
-            <?php endif; // End if categories. ?>
-
-            <?php
-            /* translators: used between list items, there is a space after the comma */
-            $tags_list = get_the_tag_list( '', __( ', ', 'storefront' ) );
-
-            if ( $tags_list ) : ?>
-                <div class="tags-links">
-                    <?php
-                    echo '<div class="label">' . esc_attr( __( 'Tagged', 'storefront' ) ) . '</div>';
-                    echo wp_kses_post( $tags_list );
-                    ?>
-                </div>
-            <?php endif; // End if $tags_list. ?>
-
-        <?php endif; // End if 'post' == get_post_type(). ?>
-
-            <?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
-                <div class="comments-link">
-                    <?php echo '<div class="label">' . esc_attr( __( 'Comments', 'storefront' ) ) . '</div>'; ?>
-                    <span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'storefront' ), __( '1 Comment', 'storefront' ), __( '% Comments', 'storefront' ) ); ?></span>
-                </div>
-            <?php endif; ?>
-        </aside>
         <?php
+        /* translators: used between list items, there is a space after the comma */
+        $tags_list = get_the_tag_list( '', __( ', ', 'storefront' ) );
+
+        if ( $tags_list ) : ?>
+            <div class="tags-links">
+                <?php
+                echo '<div class="label">' . esc_attr( __( 'Tagged', 'storefront' ) ) . '</div>';
+                echo wp_kses_post( $tags_list );
+                ?>
+            </div>
+        <?php endif; // End if $tags_list. ?>
+
+    <?php endif; // End if 'post' == get_post_type(). ?>
+
+        <?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
+            <div class="comments-link">
+                <?php echo '<div class="label">' . esc_attr( __( 'Comments', 'storefront' ) ) . '</div>'; ?>
+                <span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'storefront' ), __( '1 Comment', 'storefront' ), __( '% Comments', 'storefront' ) ); ?></span>
+            </div>
+        <?php endif; ?>
+    </aside>
+    <?php
     }
 }
 
-
+/**
+* Display navigation to next/previous post when applicable.
+*/
 if ( ! function_exists( 'lacuna_post_nav' ) ) {
-    /**
-     * Display navigation to next/previous post when applicable.
-     */
     function lacuna_post_nav() {
         $args = array(
             'next_text' => '%title',
@@ -531,10 +528,11 @@ if ( ! function_exists( 'lacuna_post_nav' ) ) {
     }
 }
 
+/**
+* Prints HTML with meta information for the current post-date/time and author.
+*/
 if ( ! function_exists( 'lacuna_posted_on' ) ) {
-    /**
-     * Prints HTML with meta information for the current post-date/time and author.
-     */
+    
     function lacuna_posted_on() {
         $time_string = '<time class="entry-date published updated" datetime="%1$s" itemprop="datePublished">%2$s</time>';
         if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
@@ -571,16 +569,11 @@ if ( ! function_exists( 'lacuna_posted_on' ) ) {
     }
 }
 
+/**
+* Display post thumbnail
+*/
 if ( ! function_exists( 'lacuna_post_thumbnail' ) ) {
-    /**
-     * Display post thumbnail
-     *
-     * @var $size thumbnail size. thumbnail|medium|large|full|$custom
-     * @uses has_post_thumbnail()
-     * @uses the_post_thumbnail
-     * @param string $size the post thumbnail size.
-     * @since 1.5.0
-     */
+    
     function lacuna_post_thumbnail( $size ) {
         if ( has_post_thumbnail() ) {
             the_post_thumbnail( $size, array( 'itemprop' => 'image' ) );
@@ -589,8 +582,7 @@ if ( ! function_exists( 'lacuna_post_thumbnail' ) ) {
 }
 
 /**
- * Posts
- *
+ * Storefront Posts Hooks Removed
  */
 remove_action( 'storefront_loop_post',         'storefront_post_header',      10 );
 remove_action( 'storefront_loop_post',         'storefront_post_meta',        20 );
@@ -604,8 +596,7 @@ remove_action( 'storefront_single_post_after', 'storefront_display_comments', 20
 
 
 /**
- * Posts rearrange
- *
+ * Posts Hooks rearrange
  */
 add_action( 'lacuna_loop_post',         'lacuna_post_header',      10 );
 add_action( 'lacuna_loop_post',         'lacuna_post_content',     30 );
@@ -619,4 +610,3 @@ add_filter( 'the_content_more_link', 'modify_read_more_link' );
 function modify_read_more_link() {
 return '<br><a class="more-link" href="' . get_permalink() . '">Læs mere</a>';
 }
-

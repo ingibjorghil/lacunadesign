@@ -45,7 +45,7 @@ $woocommerce_loop['columns'] = $columns;
 
 if ( $products->have_posts() ) : ?>
 
-	<div class="related products">
+	<div class="related products col-md-9">
 		<h1>Relaterede produkter</h1>
 
 		<?php woocommerce_product_loop_start(); ?>
@@ -59,6 +59,7 @@ if ( $products->have_posts() ) : ?>
 		<?php woocommerce_product_loop_end(); ?>
 
 	</div>
+	<?php get_sidebar( 'lacuna_product_widget' ); ?>
 
 <?php endif;
 

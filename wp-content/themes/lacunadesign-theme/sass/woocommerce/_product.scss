@@ -3,12 +3,12 @@
 		div.products {
 			div.product {
 			margin-bottom: 40px;
-			min-height: 351px;
 			.item-wrap {
 				background-color: #fff;
 				box-shadow: 0 0 2px rgba(173,173,173,.7);
 				padding: 5px 5px 15px 5px;
 				max-width: 300px;
+				min-height: 330px;
 				margin-left: auto;
 				margin-right: auto;
 				position: relative;
@@ -68,30 +68,31 @@
 			}
 				
 			h3 {
-				font-size: 1.4em;
+				font-size: 1.2em;
 				margin-top: 15px;
 				margin-bottom: 0;
 			}
 			a.button {
-				text-align: center;
+				@include lacuna-button(#fff, $color__green, 1em);
 				margin-top: 10px;
-				border-radius: 0;
-				background-color: #fff;
-				border: 1px solid $color__green;
-				font-family: $font__heading;
-				font-size: 1em;
-				color: $color__green;
-				padding: 7px 10px 3px;
-				box-shadow: none;
-				&:focus {
-					outline-color: $color__green;
-				}
+				position: absolute;
+				bottom: 5%;
+				left: 50%;
+				transform: translate(-50%, 0);
+				
 			}
 			.star-rating {
 				span {
 				&:before {
 					color: $color__green;
 				}
+				}
+			}
+			&.sale {
+				.price {
+					ins {
+						color: $color__sec_red; 
+					}
 				}
 			}
 				
@@ -109,3 +110,15 @@
 	}
 }
 
+#popular-item {
+	.woocommerce {
+		div.products {
+			div.product {
+				.item-wrap {
+					min-height: 385px;
+						
+				}
+			}
+		}
+	}
+}
