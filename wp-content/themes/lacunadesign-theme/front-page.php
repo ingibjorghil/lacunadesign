@@ -8,7 +8,6 @@
 	<?php get_template_part( 'template-parts/content', 'frontimages' ); ?>
 </section>
 <section id="designer-promo">
-	
 		<div class="wrapper-content">
 			<div class="container">
 				<?php get_template_part( 'template-parts/content', 'designerspromo' ); ?>

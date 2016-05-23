@@ -746,7 +746,7 @@ a {
   .woocommerce-active .site-header .main-navigation {
     width: 100%;
     border-bottom: 1px solid #adadad; }
-    @media only screen and (max-width: 425px) {
+    @media only screen and (max-width: 767px) {
       .woocommerce-active .site-header .main-navigation {
         padding-bottom: 15px; }
         .woocommerce-active .site-header .main-navigation ul li a {
@@ -806,15 +806,19 @@ a {
       left: 10%;
       margin: 0;
       transform: translate(0, -50%); }
-      @media only screen and (max-width: 425px) {
+      @media only screen and (max-width: 767px) {
         .woocommerce-active .site-header #header-logo-search .site-logo-link {
           margin-left: 0;
           width: 100%;
           left: 0; } }
-    @media only screen and (max-width: 425px) {
+    @media only screen and (max-width: 767px) {
       .woocommerce-active .site-header #header-logo-search img {
         margin-left: auto;
-        margin-right: auto; } }
+        margin-right: auto;
+        max-width: 350px; } }
+    @media only screen and (max-width: 425px) {
+      .woocommerce-active .site-header #header-logo-search img {
+        max-width: 250px; } }
 
 .header-cart-wrap {
   position: fixed;
@@ -838,7 +842,7 @@ li.mini_cart_item dl.variation dt.variation-Strrelse {
   -webkit-transition-timing-function: ease-in-out;
   -moz-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out; }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 767px) {
     .header-logo {
       background-color: #fff;
       left: 0;
@@ -853,7 +857,7 @@ li.mini_cart_item dl.variation dt.variation-Strrelse {
     -webkit-transition-timing-function: ease-in-out;
     -moz-transition-timing-function: ease-in-out;
     transition-timing-function: ease-in-out; }
-    @media only screen and (max-width: 425px) {
+    @media only screen and (max-width: 767px) {
       .header-logo a img {
         margin-left: 1em; } }
   .header-logo .header-shrink {
@@ -953,7 +957,8 @@ li.mini_cart_item dl.variation dt.variation-Strrelse {
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
-  -o-background-size: 100% cover; }
+  -o-background-size: 100% cover;
+  width: 100%; }
   #front-images .front-images-content {
     height: 300px;
     position: relative; }
