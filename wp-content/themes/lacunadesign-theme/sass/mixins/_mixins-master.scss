@@ -24,7 +24,7 @@
 }
 
 // Border Button mixin
-@mixin lacuna-button($color-back, $color-font, $font-size: inherit) {
+@mixin lacuna-button($color-back, $color-font, $font-size: .9em) {
 	text-align: center;
 	border-radius: 0;
 	background-color: $color-back;

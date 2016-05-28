@@ -44,10 +44,9 @@ $products = new WP_Query( $args );
 $woocommerce_loop['columns'] = $columns;
 
 if ( $products->have_posts() ) : ?>
-
-	<div class="related products col-md-9">
-		<h1>Relaterede produkter</h1>
-
+	<h1>Related Products</h1>
+		<div class="related products col-md-9">
+		
 		<?php woocommerce_product_loop_start(); ?>
 
 			<?php while ( $products->have_posts() ) : $products->the_post(); ?>

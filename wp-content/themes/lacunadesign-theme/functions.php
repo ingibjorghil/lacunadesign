@@ -86,7 +86,6 @@ function lacuna_product_widget() {
     ) );
 }
 
-
 function remove_loop_button(){
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 }
@@ -97,7 +96,7 @@ add_action('woocommerce_after_shop_loop_item','replace_add_to_cart');
 function replace_add_to_cart() {
 global $product;
 $link = $product->get_permalink();
-echo do_shortcode('<div class="button-wrap"><a href="'.$link.'" class="button view-product">Se mere</a></div>');
+echo do_shortcode('<div class="button-wrap"><a href="'.$link.'" class="button view-product">See more</a></div>');
 }
 
 if ( ! function_exists( 'storefront_before_content' ) ) {
@@ -609,4 +608,28 @@ add_action( 'lacuna_single_post_after', 'storefront_display_comments', 20 );
 add_filter( 'the_content_more_link', 'modify_read_more_link' );
 function modify_read_more_link() {
 return '<br><a class="more-link" href="' . get_permalink() . '">Læs mere</a>';
+}
+
+
+/** 
+* to change the heading of description text use
+*/
+
+add_filter('woocommerce_product_description_heading',
+'isa_product_description_heading');
+
+function isa_product_description_heading() {
+return __('Detailed Product Description', 'woocommerce');
+}
+
+
+add_filter( 'woocommerce_product_tabs', 'woo_rename_tabs', 98 );
+function woo_rename_tabs( $tabs ) {
+
+    $tabs['description']['title'] = __( 'More Information' );       // Rename the description tab
+    $tabs['reviews']['title'] = __( 'Reviews' );                // Rename the reviews tab
+    $tabs['additional_information']['title'] = __( 'Product Data' );    // Rename the additional information tab
+
+    return $tabs;
+
 }

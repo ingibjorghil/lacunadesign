@@ -60,8 +60,11 @@ table.cart {
 	}
 }
 .wc-proceed-to-checkout {
-	width: 30%;
+	width: 40%;
 	float: right;
+	@media #{$screen-md} {
+		width: 50%;
+	}
 }
 a.checkout-button.button.alt.wc-forward {
 	background-color: $color__green;
@@ -99,6 +102,13 @@ input[type="reset"], input[type="submit"],
 }
 
 .cart-collaterals {
+	div.products {
+		div.product {
+			@media #{$screen-md} {
+				padding: 0 3em !important;
+			}
+		}
+	}
 	.cart_totals {
 		width: 100%;
 	}

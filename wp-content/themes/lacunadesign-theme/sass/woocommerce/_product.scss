@@ -3,6 +3,9 @@
 		div.products {
 			div.product {
 			margin-bottom: 40px;
+			@media #{$screen-md} {
+				padding: 0 1em;
+			}
 			.item-wrap {
 				background-color: #fff;
 				box-shadow: 0 0 2px rgba(173,173,173,.7);
@@ -12,6 +15,9 @@
 				margin-left: auto;
 				margin-right: auto;
 				position: relative;
+				@media #{$screen-md} {
+					min-height: 375px;
+				}
 				img {
 					margin-left: auto;
 					margin-right: auto;
@@ -73,7 +79,7 @@
 				margin-bottom: 0;
 			}
 			a.button {
-				@include lacuna-button(#fff, $color__green, 1em);
+				@include lacuna-button(#fff, $color__green);
 				margin-top: 10px;
 				position: absolute;
 				bottom: 5%;
@@ -114,9 +120,14 @@
 	.woocommerce {
 		div.products {
 			div.product {
+				@media #{$screen-md} {
+				padding: 0 3em;
+			}
 				.item-wrap {
 					min-height: 385px;
-						
+					@media #{$screen-md} {
+						min-height: 400px;
+					}
 				}
 			}
 		}

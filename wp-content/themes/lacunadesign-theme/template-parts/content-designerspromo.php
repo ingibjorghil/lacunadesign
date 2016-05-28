@@ -22,9 +22,10 @@
 
 	//echo $name[$rand_designer];
 ?>
-<div class="row">
+<div class="row headline">
 	<div class="col-sm-12">
-		<h1>En af vores designere</h1>
+		<h1><?php the_field('designer_promo_title', 178) ?></h1>
+		<p><?php the_field('designer_promo_text', 178) ?></p>
 	</div>
 </div>
 <div class="row">

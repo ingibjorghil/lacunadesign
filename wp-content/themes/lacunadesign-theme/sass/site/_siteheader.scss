@@ -2,7 +2,7 @@
 	.site-header {
 		padding-top: 0;
 		.secondary-navigation {
-			width: 75%;
+			width: 78%;
 			margin: 0;
 			ul.menu {
 				a {
@@ -13,7 +13,7 @@
 				}
 				#menu-item-244 {
 					a {
-						padding-left: 2em;
+						padding-left: 1.5em;
 					}
 					i {
 						color: $color__green;
@@ -93,6 +93,7 @@
 				right: 10%;
 				transform: translate(0, -50%);
 				margin: 0;
+				
 				.widget_product_search {
 					input[type=search] {
 						background-color: #fff;
@@ -112,11 +113,6 @@
 				left: 10%;
 				margin: 0;
 				transform: translate(0, -50%);
-				@media #{$screen-md} {
-					margin-left: 0;
-					width: 100%;
-					left: 0;
-				}
 			}
 		
 			img {

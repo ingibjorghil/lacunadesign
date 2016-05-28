@@ -40,7 +40,13 @@
 	
 }
 #designer-promo {
+	.headline {
+		margin-bottom: .5em;
+	}
 	padding-top: 30px;
+	h1 {
+		margin-bottom: 0.1em;
+	}
 	h2 {
 		a {
 			color: $color__green;
@@ -98,36 +104,44 @@ button.pea_cook_btn {
 	}
 }
 #lacuna-info {
-	.wrapper-box {
-		background-color: #fff;
-		vertical-align: middle;
-		position: relative;
-		height: 150px;
-		h3, h4 {
+	.carousel-control {
+		.fa-angle-left {
+			left: 50%;
+			margin-left: -10px;
+		}
+		.fa-angle-right {
+			margin-right: -10px;
+			right: 50%;
+		}
+		.fa-angle-left, .fa-angle-right {
 			position: absolute;
 			top: 50%;
-			transform: translate(-50%, -50%);
-			text-align: center;
-			left: 50%;
-			a.link-button {
-				text-align: center;
-				margin-top: 10px;
-				border-radius: 0;
-				background-color: #fff;
-				border: 1px solid $color__green;
-				font-family: $font__heading;
-				font-size: 1em;
-				color: $color__green;
-				padding: 7px 10px 6px;
-				box-shadow: none;
-				&:focus {
-					outline-color: $color__green;
-				}
-				&:hover {
-
-				}
+			z-index: 5;
+			display: inline-block;
+			font-size: 2em;
+			@media #{$screen-min-lg} {
+				width: 30px;
+				height: 30px;
+				margin-top: -10px;
+				font-size: 30px;
 			}
 		}
+	}
+	.wrapper-box {
+		background-color: rgba(95, 210, 210, 0.7);
+		vertical-align: middle;
+		position: relative;
+		padding: 5px;
+		h3, h4 {
+			margin-top: 20px;
+			}
+			.blog-link {
+				@include lacuna-button( #fff, $color__green, 1em);
+				margin-bottom: 20px;
+				position: relative;
+				display: inline-block;
+				}
+		
 	}
 	.modal {
 		.mc-field-group {
@@ -147,4 +161,17 @@ button.pea_cook_btn {
 	.place-order {
 		padding: 1.387em 0;
 	}
-	}  
+	}
+
+.carousel-inner {
+	.carousel-1 {
+		
+		
+	}
+}
+.carousel-caption {
+	bottom: 46%;
+	transform: translate(0, 50%);
+	text-shadow: none;
+}
+
